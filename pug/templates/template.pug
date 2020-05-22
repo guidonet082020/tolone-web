@@ -1,0 +1,25 @@
+doctype html
+html(lang='es')
+    block config
+        include ../config/config.pug
+    include ../includes/mixins.pug
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title #{titlePage} | Tolone
+        //- Core CSS
+        include ../includes/link-css.pug
+        //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+         //- if lt IE 9
+        //-script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+        //-script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    header
+        include ../includes/navbar.pug
+    body.d-grid.body-grid
+        main.content
+            block content
+        
+        include ../includes/footer.pug
+        //- Core JS
+        include ../includes/script-js.pug

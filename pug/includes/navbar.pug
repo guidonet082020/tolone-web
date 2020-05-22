@@ -1,0 +1,48 @@
+
+.container
+    .row.my-3
+        .col-sm-12.col-md-4
+            .text-center
+                a(href="index.html")
+                    img(src="./img/tolone-logo.png",height="60",alt="Logo Tolone")
+        .col-sm-12.col-md-8
+            .montserrat.text-center.green-light.font-20
+                p.m-0 Fabrica de indumentaria deportiva
+                p.m-0 Remeras - Camisetas de Futbol
+<nav class="navbar navbar-expand-lg navbar-light bg-white ">
+    <div class="container">
+        <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse lato text-uppercase font-weight-bold spacing-2" id="basicExampleNav">
+            <ul class="navbar-nav mx-auto text-center">
+                if titlePage == "Inicio "
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./index.html">Inicio</a>
+                    </li>
+                else
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Inicio</a>
+                    </li>
+                    
+                if titlePage == "Quienes somos"
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./quienes-somos.html">Quienes somos</a>
+                    </li>
+                else
+                    <li class="nav-item">
+                        <a class="nav-link" href="./quienes-somos.html">Quienes somos</a>
+                    </li>
+
+                if titlePage == "Productos"
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./productos.html">Productos</a>
+                    </li>
+                else
+                    <li class="nav-item">
+                        <a class="nav-link" href="./productos.html">Productos</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</nav>
