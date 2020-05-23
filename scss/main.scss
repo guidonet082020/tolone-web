@@ -33,6 +33,9 @@ body {
         width: #{$i}rem !important;
         height: #{$i}rem !important;
     }
+    .mh-#{$i} {
+        min-height: #{$i}rem;
+    }
 }
 
 .flex-1 {
