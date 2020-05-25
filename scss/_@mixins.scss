@@ -1,0 +1,56 @@
+@mixin big-img-page ($color, $alpha) {
+    background: {
+        color: #{$color};
+        repeat: no-repeat;
+        size: cover;
+        position: center;
+    }
+    padding: 120px 0 120px 0;
+    position: relative;
+    z-index: 1;
+    &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: rgba($color: white, $alpha: $alpha);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+}
+
+@mixin mask($color: #000, $alpha: 0.7, $textColor: #fff) {
+    color: $textColor !important;
+    &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: rgba($color: $color, $alpha: $alpha);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+}
+
+@mixin bigImage-and-cards($bigImg, $cards) {
+    @include big-img-page(white, 0.5);
+    @each $i,
+    $img in $cards {
+        &-#{$i} {
+            background: {
+                image: url('../img/bugs/#{$img}');
+                repeat: no-repeat;
+                position: center;
+                size: cover;
+                color: transparent !important;
+            }
+            position: relative;
+            z-index: 1;
+            @include mask();
+        }
+    }
+}

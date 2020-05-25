@@ -1,0 +1,193 @@
+@import "@font-face";
+@import "@variables";
+@import "colors";
+@import "@mixins";
+@import "services";
+body {
+    font-family: 'Open Sans' !important;
+}
+
+@for $i from 0 through 100 {
+    .spacing-#{$i} {
+        letter-spacing: #{$i}px;
+    }
+    .font-#{$i} {
+        font-size: #{$i}px !important;
+    }
+    .z-index-#{$i} {
+        z-index: #{$i};
+    }
+    .bottom-#{$i} {
+        bottom:#{$i}px;
+    }
+    .top-#{$i} {
+        top:#{$i}px;
+    }
+    .left-#{$i} {
+        left: #{$i}px;
+    }
+    .right-#{$i} {
+        right: #{$i}px;
+    }
+    .square-element-#{$i} {
+        width: #{$i}rem !important;
+        height: #{$i}rem !important;
+    }
+    .mh-#{$i} {
+        min-height: #{$i}rem;
+    }
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.d {
+    &-grid {
+        display: grid !important;
+    }
+}
+
+.shadow {
+    box-shadow: 0px 0px 3px 2px rgba($color: #000000, $alpha: 0.3);
+    &-1 {
+        box-shadow: 0px 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+    }
+    &-top {
+        box-shadow: 0px 5px 3px 1px rgba($color: #000000, $alpha: 0.3);
+    }
+    &-bottom {
+        box-shadow: 0px 3px 3px 1px rgba($color: #000000, $alpha: 0.1);
+    }
+    &-inner {
+        &-top {
+            box-shadow: inset 0px 4px 4px 2px rgba($color: #000000, $alpha: 0.3);
+            position: relative;
+            i {
+                position: relative;
+                z-index: 3;
+            }
+            &::after {
+                content: "";
+                display: block;
+                width: 3rem;
+                height: 3rem;
+                background-color: white;
+                border-radius: 50%;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                clip-path: circle(70% at 1.7rem 10px);
+                z-index: -1;
+            }
+        }
+    }
+}
+
+.rounded-xl {
+    border-radius: 0.7rem !important;
+    &-top {
+        border-top-left-radius: 0.7rem !important;
+        border-top-right-radius: 0.7rem !important;
+    }
+}
+
+.body-grid {
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.content {
+    align-self: center;
+}
+
+.navbar.navbar-light {
+    .navbar-nav {
+        .nav-item.active>.nav-link {
+            background-color: unset;
+            &:after {
+                content: "";
+                display: block;
+                width: 20%;
+                background-color: $greenLight;
+                height: 3px;
+                margin: {
+                    top: 5px;
+                    left: auto;
+                    right: auto;
+                }
+                border-radius: 0.7rem;
+            }
+        }
+    }
+}
+
+.btn-close-modal {
+    border-radius: 50%;
+    width: 30px !important;
+    height: 30px !important;
+    color: white;
+    border: unset;
+}
+
+.modal-header {
+    h5 {
+        display: flex;
+        min-height: 60px !important;
+        align-items: center;
+    }
+}
+
+.md-form.input-form {
+    input,
+    select,
+    textarea {
+        background: transparent !important;
+        border: none;
+        border-bottom: 1.5px solid #d63447 !important;
+        padding: 0 5px;
+        border-radius: unset !important;
+        position: relative;
+        color: white;
+        outline: unset !important;
+        &:focus {
+            color: white !important;
+            border: inherit;
+            border-radius: 0.3rem !important;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+    select {
+        background: #212121 !important;
+    }
+    label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+        padding: 0px 0px 0px 3px;
+        pointer-events: none;
+        transition: .2s;
+        &.active {
+            transform: translateY(-32px) scale(0.8) !important;
+            color: #d63447 !important;
+            padding: 5px;
+            font-weight: bold;
+            background: white !important;
+            border-radius: 0.5rem;
+        }
+    }
+}
+
+.md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label,
+.md-form input[type="email"]:not(.browser-default):focus:not([readonly])+label {
+    transform: translateY(-32px) scale(0.8) !important;
+    color: #d63447 !important;
+    padding: 5px;
+    font-weight: bold;
+    background: white !important;
+    border-radius: 0.5rem;
+}
