@@ -16,32 +16,37 @@
         </button>
         <div class="collapse navbar-collapse lato text-uppercase font-weight-bold spacing-2" id="basicExampleNav">
             <ul class="navbar-nav mx-auto text-center">
-                if titlePage == "Inicio "
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./index.html">Inicio</a>
-                    </li>
-                else
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Inicio</a>
-                    </li>
-                    
-                if titlePage == "Quienes somos"
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./quienes-somos.html">Quienes somos</a>
-                    </li>
-                else
-                    <li class="nav-item">
-                        <a class="nav-link" href="./quienes-somos.html">Quienes somos</a>
-                    </li>
+                each item in navItems
+                    case titlePage
+                        when `${item.name}` : li.nav-item.active #[a.nav-link(href=`./${item.link}.html`)=item.name ]
+                        default: li.nav-item #[a.nav-link(href=`./${item.link}.html`)=item.name ]
 
-                if titlePage == "Productos"
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./productos.html">Productos</a>
-                    </li>
-                else
-                    <li class="nav-item">
-                        <a class="nav-link" href="./productos.html">Productos</a>
-                    </li>
+                //- if titlePage == "Inicio "
+                //-     <li class="nav-item active">
+                //-         <a class="nav-link" href="./index.html">Inicio</a>
+                //-     </li>
+                //- else
+                //-     <li class="nav-item">
+                //-         <a class="nav-link" href="./index.html">Inicio</a>
+                //-     </li>
+                    
+                //- if titlePage == "Quienes somos"
+                //-     <li class="nav-item active">
+                //-         <a class="nav-link" href="./quienes-somos.html">Quienes somos</a>
+                //-     </li>
+                //- else
+                //-     <li class="nav-item">
+                //-         <a class="nav-link" href="./quienes-somos.html">Quienes somos</a>
+                //-     </li>
+
+                //- if titlePage == "Productos"
+                //-     <li class="nav-item active">
+                //-         <a class="nav-link" href="./productos.html">Productos</a>
+                //-     </li>
+                //- else
+                //-     <li class="nav-item">
+                //-         <a class="nav-link" href="./productos.html">Productos</a>
+                //-     </li>
             </ul>
         </div>
     </div>

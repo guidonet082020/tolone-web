@@ -7,6 +7,22 @@
   color: #84c449;
 }
 
+.remeras-view {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 10px;
+}
+.remeras-configuration {
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr repeat(2, 1fr);
+  gap: 20px;
+}
+
+#Layer_x0020_1 {
+  fill: blue !important;
+}
+
 body {
   font-family: "Open Sans" !important;
 }
@@ -3888,6 +3904,18 @@ body {
   font-weight: bold;
   background: white !important;
   border-radius: 0.5rem;
+}
+
+.card-principal {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+  .card-principal {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

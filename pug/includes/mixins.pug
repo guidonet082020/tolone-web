@@ -1,0 +1,11 @@
+mixin card-service(dataCards = productCards.principal)
+    each card, i in dataCards
+        if i%2 == 0  
+            .card.card-body.p-4.rounded-xl.d-grid.card-principal.grey.lighten-2(id=`data_card_${i}`)
+                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1= card.name
+                img(src=`./img/assets/${card.img}`, alt="", height="120")
+        else 
+            .card.card-body.my-3.p-4.rounded-xl.d-grid.card-principal.grey.lighten-1(id=`data_card_${i}`)
+                img(src=`./img/assets/${card.img}`, alt="", height="120")
+                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1= card.name
+                
