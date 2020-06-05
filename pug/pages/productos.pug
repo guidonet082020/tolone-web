@@ -8,9 +8,11 @@ block append content
             .col-8.my-auto
                 .remeras-view.d-grid.blue.p-2
                     .front#front-shirt.position-relative
-                        object(data="./img/assets/remeras/model01/color-primario-1-contorno.svg", type="image/svg+xml", id="objectFront").position-relative.filter-hue.w-100
-                            img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue
-                        img(src="./img/assets/COLOR-SECUNDARIO.png", alt="", id="second-color").position-absolute.left-0.top-0.img-fluid
+                        img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue
+                        .position-absolute.z-index-2.top-10.left-0.w-100
+                            +camisetaFrentePrimaria
+                        .position-absolute.left-0.top-0.w-100.z-index-3
+                            +camisetaFrenteSecundaria
                     .back.position-relative
                         img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue
                         img(src="./img/assets/COLOR-SECUNDARIO.png", alt="", id="second-color").position-absolute.left-0.top-0.img-fluid
@@ -20,8 +22,9 @@ block append content
                         p Remeras
                     .card.card-body
                         p Color Primario
-                        input(type="hidden", value="#eee", name="color1", id="c1", on-click="changeColor(value)").rounded-pill
+                        input(type="hidden", name="color1", id="c1", value="#eee").rounded-pill
                         button.btn.btn-success#apply-c1 aplly
                     .card.card-body
                         p Color Secuncario
-                        input(type="hidden", value="#333", name="color2", id="c2").rounded-pill
+                        input(type="hidden", name="color2", id="c2", value="#eee").rounded-pill
+                        button.btn.btn-success#apply-c2 aplly
