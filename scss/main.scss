@@ -3,6 +3,7 @@
 @import "colors";
 @import "@mixins";
 @import "services";
+@import "productos";
 body {
     font-family: 'Open Sans' !important;
 }
@@ -190,4 +191,16 @@ body {
     font-weight: bold;
     background: white !important;
     border-radius: 0.5rem;
+}
+
+.card-principal {
+    grid-template: {
+        columns: repeat(2, 1fr);
+        rows: 1fr;
+    }
+    align-items: center;
+    justify-items: center;
+    @media (min-width: 769px) and (max-width: 1199px) {
+        grid-template-columns: 1fr;
+    }
 }

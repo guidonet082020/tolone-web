@@ -1,0 +1,30 @@
+extends ../templates/template.pug
+block append config
+    - titlePage = "Productos"
+
+block append content
+    .container
+        .row.my-3
+            .col-8.my-auto
+                .remeras-view.d-grid.blue.p-2
+                    .front#front-shirt.position-relative
+                        img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue
+                        .position-absolute.z-index-2.top-10.left-0.w-100
+                            +camisetaFrentePrimaria
+                        .position-absolute.left-0.top-0.w-100.z-index-3
+                            +camisetaFrenteSecundaria
+                    .back.position-relative
+                        img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue
+                        img(src="./img/assets/COLOR-SECUNDARIO.png", alt="", id="second-color").position-absolute.left-0.top-0.img-fluid
+            .col-4
+                .remeras-configuration.d-grid
+                    .card.card-body
+                        p Remeras
+                    .card.card-body
+                        p Color Primario
+                        input(type="hidden", name="color1", id="c1", value="#eee").rounded-pill
+                        button.btn.btn-success#apply-c1 aplly
+                    .card.card-body
+                        p Color Secuncario
+                        input(type="hidden", name="color2", id="c2", value="#eee").rounded-pill
+                        button.btn.btn-success#apply-c2 aplly
