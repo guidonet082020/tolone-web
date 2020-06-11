@@ -23,6 +23,22 @@
   fill: blue !important;
 }
 
+.img-multiply-shirt {
+  background-image: url("../img/assets/frente-Sombras-1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: auto;
+}
+
+.filter-hue {
+  background-blend-mode: screen;
+}
+
+#svg-color-primario, #svg-color-secundario {
+  opacity: 0.8;
+}
+
 body {
   font-family: "Open Sans" !important;
 }
