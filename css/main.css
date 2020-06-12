@@ -32,11 +32,11 @@
 }
 
 .filter-hue {
-  background-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 
 #svg-color-primario, #svg-color-secundario {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 body {
