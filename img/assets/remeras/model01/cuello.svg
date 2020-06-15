@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="19.6426mm" height="8.0432mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 385.67 157.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#81C048}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <rect width="385.67" height="157.92"/>
+   </clipPath>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g style="clip-path:url(#id0)">
+   <image id="cuello.png" x="-0" y="0" width="385.67" height="157.92" xlink:href="cuello_Images\cuello_ImgID1.png"/>
+  </g>
+  <path class="fil0" d="M29.92 36.57l136.31 0c3.94,0 6.03,-1.66 9.97,-1.66l32.81 0.83c46.07,2.32 99,0.83 146.72,0.83 0,24.28 -18.61,48.8 -35.18,59.57 -28.57,18.58 -91.88,35.18 -129.39,35.18 -38.82,0 -94.76,-16.94 -124.8,-34.79 -17.4,-10.33 -36.45,-35.27 -36.45,-59.97zm160.15 -36.57l4.96 0c10.61,0.18 15.86,1.71 26,1.72 9.44,0.01 18.91,-0.06 28.36,-0.1 11.35,-0.05 15.19,1.81 26.52,1.74 22.86,-0.15 57.5,4.46 76.92,9.52 10.47,2.73 9.91,5.37 16.59,11.66 4.51,4.25 14.57,8.12 14.57,13.69 0,28.23 -0.12,42.67 -23.68,66.08 -78.05,77.58 -298.75,70.11 -350.32,-19.56 -9.32,-16.21 -8.34,-28.88 -8.34,-46.52 0,-5.45 10.77,-9.95 15.41,-14.51 7.03,-6.91 5.68,-8.33 17.1,-11.16 26.3,-6.51 75.62,-11.06 103.79,-10.91 19.38,0.1 34.69,-1.47 52.11,-1.65z"/>
+ </g>
+</svg>
