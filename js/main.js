@@ -17,12 +17,7 @@ function modalContent() {
     })
 }
 
-let templateSuccess = `<div class="alert alert-success" role="alert">
-<h4 class="alert-heading font-weight-bold">¡Muchas Gracias!</h4>
-<p>Tu mensaje se a enviado correctamente y a la brevedad nos pondremos en contacto contigo</p>
-<hr>
-<p class="mb-0 font-14">Cualquier consulta que necesites realizar de forma inmediata podes enviarnos un correo electronico a <span class="font-weight-bold">info@fumigacionesrm.com.ar</span> o enviarnos un <a class="btn btn-success font-weight-bold btn-sm m-0 rounded-lg" href="https://wa.me/5491131039463?text=Hola%2C%20que%20tal%3F%2C%20vengo%20desde%20tu%20web%20y%20necesito%20que%20me%20asesores.." target="_blank" class="font-weight-bold text-success">Whatsapp</a></p>
-</div>`;
+let templateSuccess = `<div class="alert alert-success" role="alert"><h4 class="alert-heading font-weight-bold">¡Muchas Gracias!</h4><p>Tu mensaje se a enviado correctamente y a la brevedad nos pondremos en contacto contigo</p><hr><p class="mb-0 font-14">Cualquier consulta que necesites realizar de forma inmediata podes enviarnos un correo electronico a <span class="font-weight-bold">info@fumigacionesrm.com.ar</span> o enviarnos un <a class="btn btn-success font-weight-bold btn-sm m-0 rounded-lg" href="https://wa.me/5491131039463?text=Hola%2C%20que%20tal%3F%2C%20vengo%20desde%20tu%20web%20y%20necesito%20que%20me%20asesores.." target="_blank" class="font-weight-bold text-success">Whatsapp</a></p></div>`;
 
 //! JQUERY
 
@@ -48,10 +43,6 @@ $('#contact-form').submit(function(e) {
     });
 });
 
-
-
-
-
 $.minicolors.defaults = $.extend($.minicolors.defaults, {
     changeDelay: 200,
     letterCase: 'uppercase',
@@ -59,8 +50,6 @@ $.minicolors.defaults = $.extend($.minicolors.defaults, {
 });
 $('#c1').minicolors();
 $('#c2').minicolors();
-
-
 
 
 const btnApplyC1 = document.querySelector("#apply-c1");
