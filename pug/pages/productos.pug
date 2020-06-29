@@ -5,27 +5,30 @@ block append config
 block append content
     .container
         .row.my-3
-            .col-8.my-auto
-                .remeras-view.d-grid.blue.p-2
-                    .front#front-shirt.position-relative
-                        .img-multiply-shirt.position-relative.z-index-5
-                        img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue.z-index-5
-                        .position-absolute.z-index-2.top-9.left-0.w-100
-                            +camisetaFrentePrimaria
-                        .position-absolute.left-0.top-0.w-100.z-index-3
-                            +camisetaFrenteSecundaria
-                    .back.position-relative
-                        img(src="./img/assets/COLOR-PRIMARIO.png", alt="", id="frist-color").img-fluid.position-relative.filter-hue
-                        img(src="./img/assets/COLOR-SECUNDARIO.png", alt="", id="second-color").position-absolute.left-0.top-0.img-fluid
-            .col-4
+            .col-12.my-auto
+                .remeras-view.d-grid.p-2
+                    #front-shirt.d-flex.align-items-center.justify-content-center.position-relative
+                        +camisetaFrentePrimaria
+                    #back-shirt.d-flex.align-items-center.justify-content-center
+                        +camisetaDorsoPrimaria
+            .col-12
                 .remeras-configuration.d-grid
-                    .card.card-body
-                        p Remeras
-                    .card.card-body
-                        p Color Primario
-                        input(type="hidden", name="color1", id="c1", value="#eee").rounded-pill
-                        button.btn.btn-success#apply-c1 Set color 1
-                    .card.card-body
-                        p Color Secuncario
-                        input(type="hidden", name="color2", id="c2", value="#333").rounded-pill
-                        button.btn.btn-success#apply-c2 Set color 2
+                    .card
+                        .card-header.text-center
+                                p.font-12.text-uppercase.spacing-1.open-sans.m-0 Modelos 
+                        .card-body.p-1
+                            +modelosRemeras(modelosRemeras)
+                    .card
+                        .card-header.text-center
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color 
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Primario
+                        .card-body.mx-auto
+                            input(type="hidden", name="color1", id="c1", value="#eee").rounded-pill
+                            button.btn.btn-success.btn-sm#apply-c1 aplicar
+                    .card
+                        .card-header.text-center
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Primario
+                        .card-body.mx-auto
+                            input(type="hidden", name="color2", id="c2", value="#333").rounded-pill
+                            button.btn.btn-success.btn-sm#apply-c2 aplicar

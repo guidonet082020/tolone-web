@@ -5,8 +5,8 @@ const iElement = document.createElement('i');
 const aElement = document.createElement('a');
 const divElement = document.createElement('div');
 
-
 modalsBox.length > 1 ? modalContent() : null;
+
 
 function modalContent() {
     let elements = Array.from(modalsBox);
@@ -51,38 +51,122 @@ $.minicolors.defaults = $.extend($.minicolors.defaults, {
 $('#c1').minicolors();
 $('#c2').minicolors();
 
+let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
+let camisetaDorsoPrimaria = $("#camisetaDorsoPrimaria svg");
+let tramaFrente, tramaDorso, elementoMontado = { name: "", active: false };
+searchElements(); //* Busco los elementos svg y les coloco el id necesario y seteando data-description
 
 const btnApplyC1 = document.querySelector("#apply-c1");
-
-btnApplyC1.addEventListener('click', function(){
-    
-    const colorPrimario = document.querySelector('#svg-color-primario');
-    let element = colorPrimario.childNodes[1].childNodes[0]
-    console.log(element)
+btnApplyC1.addEventListener('click', function() {
     let c1Value = $('#c1').val();
-    element.setAttribute("fill", c1Value)
-    
+    changeColor('base', c1Value);
 });
 
 const btnApplyC2 = document.querySelector("#apply-c2");
-
-btnApplyC2.addEventListener('click', function(){
-    
-    const colorSecundario = document.querySelector('#svg-color-secundario');
-    let elements = Array.from(colorSecundario.childNodes[1].childNodes);
+btnApplyC2.addEventListener('click', function() {
     let c2Value = $('#c2').val();
-    
-    elements.forEach( part => {
+    changeColor('trama', c2Value);
+})
 
-        if(part.id !== "prefix__path1675"){
-            console.log(part.id)
-            let aux = document.querySelector(`#${part.id}`)
-            aux.setAttribute("fill", c2Value)
-        }else{
-            let aux = document.querySelector(`#${part.id}`)
-            aux.setAttribute("fill", "#000")
-        } 
-    });
-    
-});
+const remerasContainer = document.getElementById('remerasContainer');
+remerasContainer.addEventListener('click', function(e) {
+    let files, arr, { target } = e;
+    if (target.nodeName === "IMG") {
+        files = target.getAttribute("data-forms")
+        let arr = files.split(",");
+        getFile(target.alt, arr)
+    } else if (target.nodeName === "DIV") {
+        let imgTarget = target.childNodes[0];
+        files = imgTarget.getAttribute("data-forms")
+        arr = files.split(",");
+        getFile(imgTarget.alt, arr)
+    }
+})
 
+function changeColor(type, color) {
+    let elements = $(`path[data-type=${type}]`)
+    for (let el of elements) {
+        el.setAttribute('fill', color)
+    }
+}
+
+function getFile(nameFolder, ...nameFile) {
+    switch (nameFolder) {
+        case 'model01':
+            alert("Modelo aun no disponible")
+                //setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model02':
+            setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model03':
+            setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model04':
+            alert("Modelo aun no disponible")
+                //setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model05':
+            setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model06':
+            setModel(nameFolder, nameFile[0]);
+            break;
+    }
+}
+
+function setModel(nameFolder, nameFile) {
+    if (elementoMontado.name !== nameFolder) {
+        elementoMontado.name = nameFolder;
+        searchFiles(nameFile, elementoMontado.name);
+    } else if (elementoMontado.name === nameFolder) {
+        $(`#tramaDorso`).empty();
+        $(`#tramaFrente`).empty();
+        elementoMontado.name = "";
+        elementoMontado.active = false;
+    } //else {
+    // console.error(`Elemento ${nameFolder} ya montado`)
+    //}
+}
+
+function searchFiles(nameFile, nameFolder) {
+    for (const [i, name] of nameFile.entries()) {
+        $.get(`../img/assets/remeras/${nameFolder}/${name}.svg`, (data) => {
+            if (i === 0) {
+                tramaFrente = parseAppend(data.children[0], "tramaFrente")
+                categorizeElements(tramaFrente)
+            } else {
+                tramaDorso = parseAppend(data.children[0], "tramaDorso");
+                categorizeElements(tramaDorso)
+                elementoMontado.active = true;
+            }
+        });
+    }
+}
+
+function parseAppend(svg, element) {
+    if (elementoMontado.active) {
+        $(`#tramaDorso`).empty();
+        $(`#tramaFrente`).empty();
+        elementoMontado.active = false;
+    } else {
+        return $(`#${element}`).append(svg);
+    }
+}
+
+function searchElements() {
+    camisetaFrentePrimaria.children()[0].setAttribute('data-type', 'base');
+    camisetaFrentePrimaria.children()[1].setAttribute('data-type', 'trama');
+    camisetaDorsoPrimaria.children()[0].setAttribute('data-type', 'base');
+    camisetaDorsoPrimaria.children()[1].setAttribute('data-type', 'trama');
+}
+
+function categorizeElements(parentContainer) {
+    if (parentContainer != undefined) {
+        for (let item of parentContainer.children()[0].childNodes) {
+            if (item.nodeName === "path" && item.getAttribute("fill") != "none") {
+                item.setAttribute("data-type", "trama")
+            }
+        }
+    }
+}
