@@ -3,24 +3,28 @@
         grid-template: {
             columns: repeat(2, 1fr);
             rows: 1fr;
+            areas: "front back";
         }
-        align-items: center;
         gap: 10px;
     }
     &-configuration {
         grid-template: {
-            columns: 1fr;
-            rows: 2fr repeat(2, 1fr);
+            columns: 2fr repeat(2, 1fr);
+            rows: 1fr;
         }
         gap: 20px;
     }
 }
 
-#Layer_x0020_1 {
-    fill: blue !important;
+#front-shirt {
+    grid-area: front;
 }
 
-.img-multiply-shirt{
+#back-shirt {
+    grid-area: back;
+}
+
+.img-multiply-shirt {
     background-image: url("../img/assets/frente-Sombras-1.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -28,10 +32,6 @@
     height: auto;
 }
 
-.filter-hue{
+.filter-hue {
     mix-blend-mode: multiply;
-}
-
-#svg-color-primario,#svg-color-secundario{
-    opacity: 1;
 }

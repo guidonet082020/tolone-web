@@ -10,17 +10,21 @@
 .remeras-view {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  align-items: center;
+  grid-template-areas: "front back";
   gap: 10px;
 }
 .remeras-configuration {
-  grid-template-columns: 1fr;
-  grid-template-rows: 2fr repeat(2, 1fr);
+  grid-template-columns: 2fr repeat(2, 1fr);
+  grid-template-rows: 1fr;
   gap: 20px;
 }
 
-#Layer_x0020_1 {
-  fill: blue !important;
+#front-shirt {
+  grid-area: front;
+}
+
+#back-shirt {
+  grid-area: back;
 }
 
 .img-multiply-shirt {
@@ -33,10 +37,6 @@
 
 .filter-hue {
   mix-blend-mode: multiply;
-}
-
-#svg-color-primario, #svg-color-secundario {
-  opacity: 1;
 }
 
 body {
