@@ -72,7 +72,6 @@ c2.on('change', function () {
     $(`path[data-type="trama"]`).css('fill', hex);
 });
 
-
 let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
 let camisetaDorsoPrimaria = $("#camisetaDorsoPrimaria svg");
 let tramaFrente, tramaDorso, elementoMontado = { name: "", active: false };
@@ -161,9 +160,7 @@ function searchFiles(nameFile, nameFolder) {
             } else {
                 tramaDorso = parseAppend(data.children[0], "tramaDorso");
                 categorizeElements(tramaDorso)
-        
                 changeColor("trama", c2.val())
-
                 elementoMontado.active = true;
             }
         });
