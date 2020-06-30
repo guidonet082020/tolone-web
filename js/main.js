@@ -133,6 +133,15 @@ function getFile(nameFolder, ...nameFile) {
         case 'model06':
             setModel(nameFolder, nameFile[0]);
             break;
+        case 'model07':
+            setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model08':
+            setModel(nameFolder, nameFile[0]);
+            break;
+        case 'model09':
+            setModel(nameFolder, nameFile[0]);
+            break;
     }
 }
 
