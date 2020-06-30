@@ -44,12 +44,34 @@ $('#contact-form').submit(function(e) {
 });
 
 $.minicolors.defaults = $.extend($.minicolors.defaults, {
-    changeDelay: 200,
+    animationSpeed: 50,
+    animationEasing: 'swing',
+    changeDelay: 20,
+    control: 'wheel',
+    dataUris: true,
+    defaultValue: '#eee',
+    hide: null,
+    hideSpeed: 100,
+    inline: false,
     letterCase: 'uppercase',
+    opacity: false,
+    position: 'center',
+    show: null,
+    showSpeed: 100,
     theme: 'bootstrap'
 });
-$('#c1').minicolors();
-$('#c2').minicolors();
+let c1 = $('#c1'), c2 =$('#c2');
+c1.minicolors();
+c2.minicolors();
+c1.on('change', function () {
+    let hex = $(this).val()
+    $(`path[data-type="base"]`).css('fill', hex);
+});
+c2.on('change', function () {
+    let hex = $(this).val()
+    $(`path[data-type="trama"]`).css('fill', hex);
+});
+
 
 let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
 let camisetaDorsoPrimaria = $("#camisetaDorsoPrimaria svg");
@@ -135,9 +157,13 @@ function searchFiles(nameFile, nameFolder) {
             if (i === 0) {
                 tramaFrente = parseAppend(data.children[0], "tramaFrente")
                 categorizeElements(tramaFrente)
+                changeColor("base", c1.val())
             } else {
                 tramaDorso = parseAppend(data.children[0], "tramaDorso");
                 categorizeElements(tramaDorso)
+        
+                changeColor("trama", c2.val())
+
                 elementoMontado.active = true;
             }
         });
@@ -159,6 +185,8 @@ function searchElements() {
     camisetaFrentePrimaria.children()[1].setAttribute('data-type', 'trama');
     camisetaDorsoPrimaria.children()[0].setAttribute('data-type', 'base');
     camisetaDorsoPrimaria.children()[1].setAttribute('data-type', 'trama');
+    changeColor("base",c1.val());
+    changeColor("trama",c2.val());
 }
 
 function categorizeElements(parentContainer) {
@@ -170,3 +198,15 @@ function categorizeElements(parentContainer) {
         }
     }
 }
+
+const btnReset = $("#reset");
+btnReset.click(() =>{
+    $(`#tramaDorso`).empty();
+    $(`#tramaFrente`).empty();
+    elementoMontado.name = "";
+    elementoMontado.active = false;
+    c1.minicolors('value','#eeeeee');
+    c2.minicolors('value','#333333');
+    changeColor('base', c1.val());
+    changeColor('trama', c2.val());
+})
