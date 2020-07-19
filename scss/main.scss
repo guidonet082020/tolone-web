@@ -1,3 +1,4 @@
+@import "@minicolors";
 @import "@font-face";
 @import "@variables";
 @import "colors";
@@ -36,6 +37,9 @@ body {
     }
     .mh-#{$i} {
         min-height: #{$i}rem;
+    }
+    .spacing-#{$i} {
+        letter-spacing: #{$i}px;
     }
 }
 

@@ -13,23 +13,24 @@ block append content
                         +camisetaDorsoPrimaria
             .col-12
                 .remeras-configuration.d-grid
-                    .card
+                    .card#models
                         .card-header.text-center
                                 p.font-12.text-uppercase.spacing-1.open-sans.m-0 Modelos 
-                        .card-body.p-1
+                        .card-body.m-auto
                             +modelosRemeras(modelosRemeras)
-                            button.btn.btn-warning.btn-sm#reset resetar 
-                    .card
+                            //- button.btn.btn-warning.btn-sm#reset resetar 
+                    .card.text-center#models_colors
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color primario
+                            input(type="text", name="color1", id="c1", value="#eeeeee").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
+                            //- button.btn.btn-success.btn-sm#apply-c1 aplicar
+
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-my-5 Color Secundario
+                            input(type="text", name="color2", id="c2", value="#333333").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
+                            //- button.btn.btn-success.btn-sm#apply-c2 aplicar
+                            
+                    .card#models_numbers
                         .card-header.text-center
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color 
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Primario
+                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 nombre y numero
                         .card-body.mx-auto
-                            input(type="hidden", name="color1", id="c1", value="#eeeeee").rounded-pill
-                            button.btn.btn-success.btn-sm#apply-c1 aplicar
-                    .card
-                        .card-header.text-center
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Primario
-                        .card-body.mx-auto
-                            input(type="hidden", name="color2", id="c2", value="#333333").rounded-pill
-                            button.btn.btn-success.btn-sm#apply-c2 aplicar
+                            +nombreNumerosRemeras(nombreNumero)
+                            //- button.btn.btn-success.btn-sm#apply-c2 aplicar

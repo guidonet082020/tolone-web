@@ -60,16 +60,19 @@ $.minicolors.defaults = $.extend($.minicolors.defaults, {
     showSpeed: 100,
     theme: 'bootstrap'
 });
-let c1 = $('#c1'), c2 =$('#c2');
+let c1 = $('#c1'),
+    c2 = $('#c2');
 c1.minicolors();
 c2.minicolors();
-c1.on('change', function () {
+c1.on('change', function() {
     let hex = $(this).val()
     $(`path[data-type="base"]`).css('fill', hex);
 });
-c2.on('change', function () {
+c2.on('change', function() {
     let hex = $(this).val()
     $(`path[data-type="trama"]`).css('fill', hex);
+    $(`g[data-type="trama"]`).css('fill', hex);
+    $("g[fill-rule='evenodd'").css('fill', c2.val());
 });
 
 let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
@@ -77,17 +80,17 @@ let camisetaDorsoPrimaria = $("#camisetaDorsoPrimaria svg");
 let tramaFrente, tramaDorso, elementoMontado = { name: "", active: false };
 searchElements(); //* Busco los elementos svg y les coloco el id necesario y seteando data-description
 
-const btnApplyC1 = document.querySelector("#apply-c1");
-btnApplyC1.addEventListener('click', function() {
-    let c1Value = $('#c1').val();
-    changeColor('base', c1Value);
-});
+// const btnApplyC1 = document.querySelector("#apply-c1");
+// btnApplyC1.addEventListener('click', function() {
+//     let c1Value = $('#c1').val();
+//     changeColor('base', c1Value);
+// });
 
-const btnApplyC2 = document.querySelector("#apply-c2");
-btnApplyC2.addEventListener('click', function() {
-    let c2Value = $('#c2').val();
-    changeColor('trama', c2Value);
-})
+// const btnApplyC2 = document.querySelector("#apply-c2");
+// btnApplyC2.addEventListener('click', function() {
+//     let c2Value = $('#c2').val();
+//     changeColor('trama', c2Value);
+// })
 
 const remerasContainer = document.getElementById('remerasContainer');
 remerasContainer.addEventListener('click', function(e) {
@@ -146,28 +149,31 @@ function getFile(nameFolder, ...nameFile) {
 }
 
 function setModel(nameFolder, nameFile) {
+    console.log(`nameFolder: ${nameFolder}`)
     if (elementoMontado.name !== nameFolder) {
         elementoMontado.name = nameFolder;
+        console.log(`IF (${elementoMontado.name !== nameFolder}): ${nameFolder}`, elementoMontado.name)
         searchFiles(nameFile, elementoMontado.name);
     } else if (elementoMontado.name === nameFolder) {
         $(`#tramaDorso`).empty();
         $(`#tramaFrente`).empty();
         elementoMontado.name = "";
         elementoMontado.active = false;
-    } //else {
-    // console.error(`Elemento ${nameFolder} ya montado`)
-    //}
+    }
 }
 
 function searchFiles(nameFile, nameFolder) {
+    $(`#tramaFrente`).empty();
+    $(`#tramaDorso`).empty();
+    elementoMontado.active = false;
     for (const [i, name] of nameFile.entries()) {
         $.get(`../img/assets/remeras/${nameFolder}/${name}.svg`, (data) => {
             if (i === 0) {
-                tramaFrente = parseAppend(data.children[0], "tramaFrente")
+                let tramaFrente = parseAppend(data.children[0], "tramaFrente");
                 categorizeElements(tramaFrente)
                 changeColor("base", c1.val())
             } else {
-                tramaDorso = parseAppend(data.children[0], "tramaDorso");
+                let tramaDorso = parseAppend(data.children[0], "tramaDorso");
                 categorizeElements(tramaDorso)
                 changeColor("trama", c2.val())
                 elementoMontado.active = true;
@@ -178,8 +184,6 @@ function searchFiles(nameFile, nameFolder) {
 
 function parseAppend(svg, element) {
     if (elementoMontado.active) {
-        $(`#tramaDorso`).empty();
-        $(`#tramaFrente`).empty();
         elementoMontado.active = false;
     } else {
         return $(`#${element}`).append(svg);
@@ -191,8 +195,8 @@ function searchElements() {
     camisetaFrentePrimaria.children()[1].setAttribute('data-type', 'trama');
     camisetaDorsoPrimaria.children()[0].setAttribute('data-type', 'base');
     camisetaDorsoPrimaria.children()[1].setAttribute('data-type', 'trama');
-    changeColor("base",c1.val());
-    changeColor("trama",c2.val());
+    changeColor("base", c1.val());
+    changeColor("trama", c2.val());
 }
 
 function categorizeElements(parentContainer) {
@@ -205,14 +209,101 @@ function categorizeElements(parentContainer) {
     }
 }
 
+function categorizeNumberBack(svg) {
+    let element = svg.children()[0].childNodes[0].childNodes[0];
+    console.log(element)
+    if (element.length > 1) {
+        for (let e of element) {
+            e.setAttribute("data-type", "trama");
+        }
+    } else {
+        element.setAttribute("data-type", "trama");
+    }
+    return element;
+}
+
+const numeroContainer = $("#nombreNumerosRemerasContainer")
+numeroContainer.click((e) => {
+    let { target } = e;
+    let dataGet = target.getAttribute("data-get");
+    switch (dataGet) {
+        case 'option-01':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-02':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-03':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-04':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-05':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-06':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-07':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-08':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-09':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-10':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-11':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-12':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-13':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-14':
+            getNombreNumero(dataGet);
+            break;
+        case 'option-15':
+            getNombreNumero(dataGet);
+            break;
+        default:
+            console.log("No disponible");
+            break;
+    }
+});
+
+
 const btnReset = $("#reset");
-btnReset.click(() =>{
+btnReset.click(() => {
     $(`#tramaDorso`).empty();
     $(`#tramaFrente`).empty();
     elementoMontado.name = "";
     elementoMontado.active = false;
-    c1.minicolors('value','#eeeeee');
-    c2.minicolors('value','#333333');
+    c1.minicolors('value', '#eeeeee');
+    c2.minicolors('value', '#333333');
     changeColor('base', c1.val());
     changeColor('trama', c2.val());
 })
+
+function getNombreNumero(dataGet) {
+    $("#numeroDorso").empty();
+    $.get(`../img/svg/nombreNumero/${dataGet}.svg`, (data) => {
+        let numeroDorso = parseAppend(data.children[0], "numeroDorso");
+        let categorized = categorizeNumberBack(numeroDorso);
+        if (categorized.length > 1) {
+            for (let c in categorized) {
+                c.setAttribute('fill', c2.val());
+            }
+        } else {
+            categorized.setAttribute('fill', c2.val());
+        }
+        $("g[fill-rule='evenodd'").css('fill', c2.val());
+        $("g[fill='#060606'").css('fill', c2.val());
+    });
+}
