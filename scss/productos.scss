@@ -1,50 +1,26 @@
-.remeras {
-    &-view {
-        grid-template: {
-            columns: repeat(2, 1fr);
-            rows: 1fr;
-            areas: "front back";
+#grid-productos {
+    display: grid;
+    grid-template: {
+        columns: repeat(2, 1fr);
+    }
+    grid-auto-rows: 100%;
+    gap: 5px;
+    justify-items: center;
+    align-items: center;
+    @for $i from 0 through 6 {
+        .item-product-#{$i} {
+            align-self: center;
+            justify-self: center;
+            img {
+                width: 100%;
+            }
         }
-        gap: 10px;
     }
-    &-configuration {
-        grid-template: {
-            columns: repeat(6, 1fr);
-            rows: repeat(6, 80px);
-        }
-        gap: 20px;
-    }
-}
-
-#front-shirt {
-    grid-area: front;
-}
-
-#back-shirt {
-    grid-area: back;
-}
-
-.img-multiply-shirt {
-    background-image: url("../img/assets/frente-Sombras-1.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: auto;
-}
-
-.filter-hue {
-    mix-blend-mode: multiply;
-}
-
-#models {
-    grid-row: 1 / 4;
-    grid-column: 1 / 3;
-    &_colors {
-        grid-row: 1 / 4;
-        grid-column: 3 / 4;
-    }
-    &_numbers {
-        grid-row: 4 / 7;
+    .item-expanded-Futbol-0 {
         grid-column: 1 / 3;
+        height: 100%;
+        align-self: start;
+        display: flex;
+        flex-direction: column;
     }
 }

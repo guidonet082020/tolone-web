@@ -40,3 +40,25 @@ mixin nombreNumerosRemeras(nombreNumero)
                 .card.card-body.p-1.m-1
                     p.m-0.p-1.text-center(data-get=`${e.name}`) #{i}
 
+
+mixin formContact()
+    //  Default form contact 
+    form.text-center.border.border-light.p-5(action="#!")
+        p.h4.mb-4 Contact us
+        //  Name 
+        input#defaultContactFormName.form-control.mb-4(type="text", placeholder="Nombre Completo")
+        //  Email 
+        input#defaultContactFormEmail.form-control.mb-4(type="email", placeholder="E-mail")
+        //  Telephone 
+        input#defaultContactFormTelephone.form-control.mb-4(type="number", placeholder="Telefono")
+        //  Message 
+        .form-group
+            textarea.form-control.rounded-0#exampleFormControlTextarea2(rows="3", placeholder="Consulta")
+        //  Copy 
+        //  Send button 
+        button.btn.btn-green.btn-block(type="submit") Enviar
+        //  Default form contact 
+
+mixin mapTolone()
+    iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.864806508414!2d-58.405000684296844!3d-34.60757998045852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaec3423110f%3A0x66a9213179733dd5!2sTolone!5e0!3m2!1ses-419!2sar!4v1596422076119!5m2!1ses-419!2sar", width="100%", height="450", frameborder="0", style="border:0;", allowfullscreen, aria-hidden="false", tabindex="0").rounded-xl
+

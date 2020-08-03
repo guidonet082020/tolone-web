@@ -1,12 +1,39 @@
-const btnBug = document.getElementById('btnBug');
 const modalsBox = document.getElementsByClassName("modal");
 const formContact = document.querySelector('#contact-form');
 const iElement = document.createElement('i');
 const aElement = document.createElement('a');
 const divElement = document.createElement('div');
 
-modalsBox.length > 1 ? modalContent() : null;
+//! MOBILE THINGS
 
+let goToFront = $("#go-to-front");
+let goToBack = $("#go-to-back");
+
+goToFront.click(() => {
+    $('#camisetaDorsoPrimaria').css("display", "none");
+    $('#camisetaFrentePrimaria').css("display", "unset");
+    if (goToBack.hasClass("active")) {
+        goToBack.toggleClass("active");
+        goToFront.toggleClass("active");
+    } else {
+        goToFront.toggleClass("active");
+    }
+});
+
+goToBack.click(() => {
+    $('#camisetaFrentePrimaria').css("display", "none");
+    $('#camisetaDorsoPrimaria').css("display", "unset");
+    if (goToFront.hasClass("active")) {
+        goToBack.toggleClass("active");
+        goToFront.toggleClass("active");
+    } else {
+        goToBack.toggleClass("active");
+    }
+});
+
+//!. MOBILE THINGS
+
+modalsBox.length > 1 ? modalContent() : null;
 
 function modalContent() {
     let elements = Array.from(modalsBox);
@@ -78,7 +105,7 @@ c2.on('change', function() {
 let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
 let camisetaDorsoPrimaria = $("#camisetaDorsoPrimaria svg");
 let tramaFrente, tramaDorso, elementoMontado = { name: "", active: false };
-searchElements(); //* Busco los elementos svg y les coloco el id necesario y seteando data-description
+camisetaFrentePrimaria.children()[0] != null ? searchElements() : null //* Busco los elementos svg y les coloco el id necesario y seteando data-description
 
 // const btnApplyC1 = document.querySelector("#apply-c1");
 // btnApplyC1.addEventListener('click', function() {
@@ -93,19 +120,22 @@ searchElements(); //* Busco los elementos svg y les coloco el id necesario y set
 // })
 
 const remerasContainer = document.getElementById('remerasContainer');
-remerasContainer.addEventListener('click', function(e) {
-    let files, arr, { target } = e;
-    if (target.nodeName === "IMG") {
-        files = target.getAttribute("data-forms")
-        let arr = files.split(",");
-        getFile(target.alt, arr)
-    } else if (target.nodeName === "DIV") {
-        let imgTarget = target.childNodes[0];
-        files = imgTarget.getAttribute("data-forms")
-        arr = files.split(",");
-        getFile(imgTarget.alt, arr)
-    }
-})
+if (remerasContainer != null) {
+    remerasContainer.addEventListener('click', function(e) {
+        let files, arr, { target } = e;
+        if (target.nodeName === "IMG") {
+            files = target.getAttribute("data-forms")
+            let arr = files.split(",");
+            getFile(target.alt, arr)
+        } else if (target.nodeName === "DIV") {
+            let imgTarget = target.childNodes[0];
+            files = imgTarget.getAttribute("data-forms")
+            arr = files.split(",");
+            getFile(imgTarget.alt, arr)
+        }
+    })
+}
+
 
 function changeColor(type, color) {
     let elements = $(`path[data-type=${type}]`)
@@ -120,39 +150,21 @@ function getFile(nameFolder, ...nameFile) {
             alert("Modelo aun no disponible")
                 //setModel(nameFolder, nameFile[0]);
             break;
-        case 'model02':
-            setModel(nameFolder, nameFile[0]);
-            break;
-        case 'model03':
-            setModel(nameFolder, nameFile[0]);
-            break;
         case 'model04':
             alert("Modelo aun no disponible")
                 //setModel(nameFolder, nameFile[0]);
             break;
-        case 'model05':
-            setModel(nameFolder, nameFile[0]);
-            break;
-        case 'model06':
-            setModel(nameFolder, nameFile[0]);
-            break;
-        case 'model07':
-            setModel(nameFolder, nameFile[0]);
-            break;
-        case 'model08':
-            setModel(nameFolder, nameFile[0]);
-            break;
-        case 'model09':
+        default:
             setModel(nameFolder, nameFile[0]);
             break;
     }
 }
 
 function setModel(nameFolder, nameFile) {
-    console.log(`nameFolder: ${nameFolder}`)
+    console.log(`nameFolder: ${nameFolder}`, nameFile)
     if (elementoMontado.name !== nameFolder) {
         elementoMontado.name = nameFolder;
-        console.log(`IF (${elementoMontado.name !== nameFolder}): ${nameFolder}`, elementoMontado.name)
+        //console.log(`IF (${elementoMontado.name !== nameFolder}): ${nameFolder}`, elementoMontado.name)
         searchFiles(nameFile, elementoMontado.name);
     } else if (elementoMontado.name === nameFolder) {
         $(`#tramaDorso`).empty();
@@ -202,8 +214,23 @@ function searchElements() {
 function categorizeElements(parentContainer) {
     if (parentContainer != undefined) {
         for (let item of parentContainer.children()[0].childNodes) {
+            if (item.nodeName === "g" && item.getAttribute("fill") != "none") {
+                if (item.nodeName === "g" && item.getAttribute("fill") === "#FFF") {
+                    item.setAttribute("data-type", "trama-dos")
+                        //console.log(item.getAttribute("fill"), item)
+                } else {
+                    item.setAttribute("data-type", "trama")
+                        //console.log(item.getAttribute("fill"), item)
+                }
+            }
             if (item.nodeName === "path" && item.getAttribute("fill") != "none") {
-                item.setAttribute("data-type", "trama")
+                if (item.nodeName === "path" && item.getAttribute("fill") === "#FFF") {
+                    item.setAttribute("data-type", "trama-dos")
+                        //console.log(item.getAttribute("fill"), item)
+                } else {
+                    item.setAttribute("data-type", "trama")
+                        //console.log(item.getAttribute("fill"), item)
+                }
             }
         }
     }
@@ -307,3 +334,13 @@ function getNombreNumero(dataGet) {
         $("g[fill='#060606'").css('fill', c2.val());
     });
 }
+
+const gridProducts = $("#grid-productos");
+
+gridProducts.click((e) => {
+    let { target } = e;
+    let selected = target.getAttribute("alt");
+    $("[class*='item-product']").css("display", "none")
+    $(`[class*='item-expanded-${selected}']`).toggleClass("d-none")
+    console.log(selected)
+});

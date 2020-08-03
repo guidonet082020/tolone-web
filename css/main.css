@@ -4,7 +4,7 @@
   width: 40px;
   height: 40px;
   top: calc(50% - 20px);
-  left: -2px;
+  left: calc(50% - 70px);
   border-radius: 0.5rem;
   border: none;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
@@ -30,24 +30,130 @@
   color: #84c449;
 }
 
-.remeras-view {
+#grid-productos {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-template-areas: "front back";
+  grid-auto-rows: 100%;
+  gap: 5px;
+  justify-items: center;
+  align-items: center;
+}
+#grid-productos .item-product-0 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-0 img {
+  width: 100%;
+}
+#grid-productos .item-product-1 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-1 img {
+  width: 100%;
+}
+#grid-productos .item-product-2 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-2 img {
+  width: 100%;
+}
+#grid-productos .item-product-3 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-3 img {
+  width: 100%;
+}
+#grid-productos .item-product-4 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-4 img {
+  width: 100%;
+}
+#grid-productos .item-product-5 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-5 img {
+  width: 100%;
+}
+#grid-productos .item-product-6 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-6 img {
+  width: 100%;
+}
+#grid-productos .item-expanded-Futbol-0 {
+  grid-column: 1/3;
+  height: 100%;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.remeras-view {
+  grid-template-columns: 1fr;
+  grid-template-rows: 25rem;
   gap: 10px;
+  background: radial-gradient(circle, #2b2b2b 0%, rgba(99, 99, 99, 0.9752101524) 22%, #1f2222 100%);
+  border-radius: 0.7rem;
+  margin: 10px auto;
+  width: 95%;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.7);
+}
+@media (min-width: 768px) {
+  .remeras-view {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .remeras-configuration {
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(6, 80px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr repeat(3, 100px);
   gap: 20px;
 }
 
+#models {
+  grid-column: 1/4;
+  grid-row: 1/3;
+}
+#models_colors {
+  grid-row: 3/4;
+  grid-column: 1/4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#models_numbers {
+  grid-column: 1/4;
+  grid-row: 4/6;
+}
 #front-shirt {
-  grid-area: front;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  align-self: center;
+  justify-self: center;
 }
 
 #back-shirt {
-  grid-area: back;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  align-self: center;
+  justify-self: center;
+}
+#back-shirt #camisetaDorsoPrimaria {
+  display: none;
+}
+@media (min-width: 768px) {
+  #back-shirt {
+    grid-column: 2/3;
+  }
+  #back-shirt #camisetaDorsoPrimaria {
+    display: block;
+  }
 }
 
 .img-multiply-shirt {
@@ -59,20 +165,30 @@
 }
 
 .filter-hue {
-  mix-blend-mode: multiply;
+  display: none;
+}
+@media (min-width: 576px) {
+  .filter-hue {
+    mix-blend-mode: multiply;
+    display: block;
+  }
 }
 
-#models {
-  grid-row: 1/4;
-  grid-column: 1/3;
+.controls-mobile {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
-#models_colors {
-  grid-row: 1/4;
-  grid-column: 3/4;
-}
-#models_numbers {
-  grid-row: 4/7;
-  grid-column: 1/3;
+
+.img-quienes-somos {
+  background-image: url("../img/assets/img-quienes-somos.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -4275,7 +4391,7 @@ body {
 .body-grid {
   height: 100vh;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;
 }
 
 .content {
