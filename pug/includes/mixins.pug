@@ -18,16 +18,47 @@ mixin camisetaFrentePrimaria
 mixin camisetaDorsoPrimaria
     #camisetaDorsoPrimaria.position-relative
         <svg xmlns="http://www.w3.org/2000/svg" width="272.686" height="337.104" viewBox="309.848 312.688 272.686 337.104"><path fill="#EEEEEE" d="M582.491 452.257s-1.435-19.098-2.453-35.294c0 0 1.728-29.646-15.626-56.117 0 0-5.342-6.46-16.149-16.195a68.07 68.07 0 00-.02-.417c-10.504-6.077-25.051-10.149-25.051-10.149-14.746-2.992-32.315-13.173-32.315-13.173-.406-.323-1.171-.64-2.055-.928-.688-.771-2.142-1.399-2.899-2.075-1.502-1.338-1.376-1.898-3.731-2.48-4.368-1.074-12.161-2.055-17.305-2.023-2.549.016-3.413-.381-5.967-.369-2.126.009-4.257.023-6.379.021-2.281-.003-2.025-.328-4.413-.367-4.603.045-9.271.376-14.277.353-6.338-.031-17.433.936-23.35 2.32-2.57.602-2.265.904-3.847 2.373-.807.748-2.432 1.49-3.132 2.322-16.826 10.447-44.054 17.637-44.054 17.637-6.371 2.129-13.497 5.6-13.497 5.6-.036.064-.131-.006-.165.06l-.279-.091s-4.535 4.92-9.055 8.375c0 0-21.688 16.197-23.91 59.002l-.293 7.806-.586 6.371s-.185 7.912-.863 14.947c0 0-.294 14.066-.973 15.039 0 0 11.184 10.504 38.379 11.568 0 0 6.756.201 9.934-2.406 0 0-.216-1.928.077-7.033 0 0 .401-4.828.787-8.777 0 0-.864-13.682.679-23.908 0 0-.293-1.451 1.249-1.203l.218-.388c.145.25.227.388.227.388 2.9 7.805 3.471 27.334 3.471 27.334 2.313 27.766 5.646 66.529 5.646 66.529 3.471 52.059-7.527 108.178-7.527 108.178-.694 4.395-1.589 8.098-1.589 8.098 1.357 13.111 27.766 14.561 27.766 14.561 50.61 4.242 102.578.586 102.578.586 24.681-.477 32.101-5.49 32.101-5.49 7.142-3.086 8.299-8.576 8.299-8.576.586-1.543-.864-5.215-.864-5.215-5.521-32.131-7.913-56.596-7.913-56.596-2.406-26.223-.478-56.115-.478-56.115 2.313-17.646 4.534-51.676 4.534-51.676 1.45-13.496 2.314-29.602 2.314-29.602.665-6.096 2.077-9.91 2.692-11.346.083.311.305 1.266.596 3.463 0 0 .371 7.666.51 21.256 0 0 .586 7.234.802 15.117 0 0 .94 2.822 7.019 2.746 0 0 16.845 1.65 38.532-8.9-.002-.004 3.037-2.026 2.605-5.141z"/><path d="M404.035 320.022s3.563-.864 7.033-1.064h72.406s3.092.553 5.365 1.294c-.688-.77-2.141-1.4-2.898-2.076-1.502-1.337-1.377-1.898-3.732-2.479-4.367-1.075-12.16-2.056-17.305-2.024-2.549.016-3.412-.381-5.967-.369-2.125.009-4.256.023-6.379.021-2.281-.003-3.461-.327-5.85-.366h-1.117c-4.604.045-6.717.375-11.723.352-6.338-.031-17.434.936-23.35 2.32-2.57.602-2.266.904-3.848 2.373-.807.749-2.432 1.49-3.131 2.323.166-.103.334-.202.496-.305z"/></svg>
-        #tramaDorso.position-absolute.top-0.left-0.right-0.bottom-0.mx-auto.z-index-4
+        #tramaDorso.position-absolute.top-0.left-0.right-0.bottom-0.mx-auto.z-index-3
+        #numeroDorso.position-absolute.top-0.left-0.right-0.bottom-0.mx-auto.z-index-4.w-100
         img(src="./img/assets/COLOR-PRIMARIO-DORSO.png", alt="", id="pattern-back").img-fluid.position-absolute.filter-hue.z-index-5.top-0.left-0.bottom-0.right-0
 
 mixin modelosRemeras(objRemeras)
     #modelosRemeras
-        .d-flex#remerasContainer
+        .d-flex#remerasContainer.flex-wrap.justify-content-around.align-items-center
             each remera in objRemeras
                 if(remera.name === "model01" || remera.name === "model04")    
                     .card.card-body.p-1.m-1.d-none(id=`${remera.name}`)
                         img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.mx-auto
                 else
-                    .card.card-body.p-1.m-1(id=`${remera.name}`)
-                        img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.mx-auto
+                    .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2(id=`${remera.name}`)
+                        img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.m-auto
+
+mixin nombreNumerosRemeras(nombreNumero)
+    #nombreNumerosRemeras
+        .d-flex#nombreNumerosRemerasContainer.flex-wrap
+            each e, i in nombreNumero
+                .card.card-body.p-1.m-1
+                    p.m-0.p-1.text-center(data-get=`${e.name}`) #{i}
+
+
+mixin formContact()
+    //  Default form contact 
+    form.text-center.border.border-light.p-5(action="#!")
+        p.h4.mb-4 Contact us
+        //  Name 
+        input#defaultContactFormName.form-control.mb-4(type="text", placeholder="Nombre Completo")
+        //  Email 
+        input#defaultContactFormEmail.form-control.mb-4(type="email", placeholder="E-mail")
+        //  Telephone 
+        input#defaultContactFormTelephone.form-control.mb-4(type="number", placeholder="Telefono")
+        //  Message 
+        .form-group
+            textarea.form-control.rounded-0#exampleFormControlTextarea2(rows="3", placeholder="Consulta")
+        //  Copy 
+        //  Send button 
+        button.btn.btn-green.btn-block(type="submit") Enviar
+        //  Default form contact 
+
+mixin mapTolone()
+    iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.864806508414!2d-58.405000684296844!3d-34.60757998045852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaec3423110f%3A0x66a9213179733dd5!2sTolone!5e0!3m2!1ses-419!2sar!4v1596422076119!5m2!1ses-419!2sar", width="100%", height="450", frameborder="0", style="border:0;", allowfullscreen, aria-hidden="false", tabindex="0").rounded-xl
+

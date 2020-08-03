@@ -3,33 +3,27 @@ block append config
     - titlePage = "Productos"
 
 block append content
-    .container
-        .row.my-3
-            .col-12.my-auto
-                .remeras-view.d-grid.p-2
-                    #front-shirt.d-flex.align-items-center.justify-content-center.position-relative
-                        +camisetaFrentePrimaria
-                    #back-shirt.d-flex.align-items-center.justify-content-center
-                        +camisetaDorsoPrimaria
-            .col-12
-                .remeras-configuration.d-grid
-                    .card
-                        .card-header.text-center
-                                p.font-12.text-uppercase.spacing-1.open-sans.m-0 Modelos 
-                        .card-body.p-1
-                            +modelosRemeras(modelosRemeras)
-                            button.btn.btn-warning.btn-sm#reset resetar 
-                    .card
-                        .card-header.text-center
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color 
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Primario
-                        .card-body.mx-auto
-                            input(type="hidden", name="color1", id="c1", value="#eeeeee").rounded-pill
-                            button.btn.btn-success.btn-sm#apply-c1 aplicar
-                    .card
-                        .card-header.text-center
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Color
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-0 Primario
-                        .card-body.mx-auto
-                            input(type="hidden", name="color2", id="c2", value="#333333").rounded-pill
-                            button.btn.btn-success.btn-sm#apply-c2 aplicar
+    section.img-quienes-somos
+        .container
+            .row
+                .col-12
+                    #grid-productos
+                        each pcs, i in productCards.second
+                            div(class=`item-product-${i}`, id=`product-${i}-${pcs.name}`)
+                                img(src=`./img/assets/${pcs.img}`, alt=`${pcs.name}`)
+
+                            div(class=`item-expanded-${pcs.name}-${i} d-none text-center`)
+                                h2 #{pcs.name}
+                                if pcs.branch 
+                                    each b in pcs.branch
+                                        .card.card-body.m-2
+                                            h4.card-title #{b.name}
+                                            each t in b.texts
+                                                p.card-text #{t}
+
+                                        .d-flex.justify-content-center    
+                                            each img in b.img
+                                                img(src=`./img/assets/productos/${img}`, alt="", height="150").mx-3
+                                else if pcs.description
+                                    .card.card-body.m-2
+                                        p #{pcs.description}

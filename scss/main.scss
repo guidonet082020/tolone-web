@@ -1,9 +1,12 @@
+@import "@minicolors";
 @import "@font-face";
 @import "@variables";
 @import "colors";
 @import "@mixins";
 @import "services";
 @import "productos";
+@import "arma-tu-camiseta";
+@import "quienes-somos";
 body {
     font-family: 'Open Sans' !important;
 }
@@ -36,6 +39,9 @@ body {
     }
     .mh-#{$i} {
         min-height: #{$i}rem;
+    }
+    .spacing-#{$i} {
+        letter-spacing: #{$i}px;
     }
 }
 
@@ -98,7 +104,7 @@ body {
 .body-grid {
     height: 100vh;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto;
 }
 
 .content {

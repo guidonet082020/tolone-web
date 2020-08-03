@@ -1,30 +1,159 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
+.minicolors-theme-bootstrap .minicolors-swatch {
+  width: 40px;
+  height: 40px;
+  top: calc(50% - 20px);
+  left: calc(50% - 70px);
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 .montserrat {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+.open-sans, .open-sans-700, .open-sans-300 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+}
+.open-sans-300 {
+  font-weight: 400;
+}
+.open-sans-700 {
+  font-weight: 700;
 }
 
 .green-light {
   color: #84c449;
 }
 
-.remeras-view {
+#grid-productos {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-template-areas: "front back";
+  grid-auto-rows: 100%;
+  gap: 5px;
+  justify-items: center;
+  align-items: center;
+}
+#grid-productos .item-product-0 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-0 img {
+  width: 100%;
+}
+#grid-productos .item-product-1 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-1 img {
+  width: 100%;
+}
+#grid-productos .item-product-2 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-2 img {
+  width: 100%;
+}
+#grid-productos .item-product-3 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-3 img {
+  width: 100%;
+}
+#grid-productos .item-product-4 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-4 img {
+  width: 100%;
+}
+#grid-productos .item-product-5 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-5 img {
+  width: 100%;
+}
+#grid-productos .item-product-6 {
+  align-self: center;
+  justify-self: center;
+}
+#grid-productos .item-product-6 img {
+  width: 100%;
+}
+#grid-productos .item-expanded-Futbol-0 {
+  grid-column: 1/3;
+  height: 100%;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.remeras-view {
+  grid-template-columns: 1fr;
+  grid-template-rows: 25rem;
   gap: 10px;
+  background: radial-gradient(circle, #2b2b2b 0%, rgba(99, 99, 99, 0.9752101524) 22%, #1f2222 100%);
+  border-radius: 0.7rem;
+  margin: 10px auto;
+  width: 95%;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.7);
+}
+@media (min-width: 768px) {
+  .remeras-view {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .remeras-configuration {
-  grid-template-columns: 2fr repeat(2, 1fr);
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr repeat(3, 100px);
   gap: 20px;
 }
 
+#models {
+  grid-column: 1/4;
+  grid-row: 1/3;
+}
+#models_colors {
+  grid-row: 3/4;
+  grid-column: 1/4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#models_numbers {
+  grid-column: 1/4;
+  grid-row: 4/6;
+}
 #front-shirt {
-  grid-area: front;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  align-self: center;
+  justify-self: center;
 }
 
 #back-shirt {
-  grid-area: back;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  align-self: center;
+  justify-self: center;
+}
+#back-shirt #camisetaDorsoPrimaria {
+  display: none;
+}
+@media (min-width: 768px) {
+  #back-shirt {
+    grid-column: 2/3;
+  }
+  #back-shirt #camisetaDorsoPrimaria {
+    display: block;
+  }
 }
 
 .img-multiply-shirt {
@@ -36,7 +165,30 @@
 }
 
 .filter-hue {
-  mix-blend-mode: multiply;
+  display: none;
+}
+@media (min-width: 576px) {
+  .filter-hue {
+    mix-blend-mode: multiply;
+    display: block;
+  }
+}
+
+.controls-mobile {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.img-quienes-somos {
+  background-image: url("../img/assets/img-quienes-somos.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -80,6 +232,10 @@ body {
   min-height: 0rem;
 }
 
+.spacing-0 {
+  letter-spacing: 0px;
+}
+
 .spacing-1 {
   letter-spacing: 1px;
 }
@@ -115,6 +271,10 @@ body {
 
 .mh-1 {
   min-height: 1rem;
+}
+
+.spacing-1 {
+  letter-spacing: 1px;
 }
 
 .spacing-2 {
@@ -154,6 +314,10 @@ body {
   min-height: 2rem;
 }
 
+.spacing-2 {
+  letter-spacing: 2px;
+}
+
 .spacing-3 {
   letter-spacing: 3px;
 }
@@ -189,6 +353,10 @@ body {
 
 .mh-3 {
   min-height: 3rem;
+}
+
+.spacing-3 {
+  letter-spacing: 3px;
 }
 
 .spacing-4 {
@@ -228,6 +396,10 @@ body {
   min-height: 4rem;
 }
 
+.spacing-4 {
+  letter-spacing: 4px;
+}
+
 .spacing-5 {
   letter-spacing: 5px;
 }
@@ -263,6 +435,10 @@ body {
 
 .mh-5 {
   min-height: 5rem;
+}
+
+.spacing-5 {
+  letter-spacing: 5px;
 }
 
 .spacing-6 {
@@ -302,6 +478,10 @@ body {
   min-height: 6rem;
 }
 
+.spacing-6 {
+  letter-spacing: 6px;
+}
+
 .spacing-7 {
   letter-spacing: 7px;
 }
@@ -337,6 +517,10 @@ body {
 
 .mh-7 {
   min-height: 7rem;
+}
+
+.spacing-7 {
+  letter-spacing: 7px;
 }
 
 .spacing-8 {
@@ -376,6 +560,10 @@ body {
   min-height: 8rem;
 }
 
+.spacing-8 {
+  letter-spacing: 8px;
+}
+
 .spacing-9 {
   letter-spacing: 9px;
 }
@@ -411,6 +599,10 @@ body {
 
 .mh-9 {
   min-height: 9rem;
+}
+
+.spacing-9 {
+  letter-spacing: 9px;
 }
 
 .spacing-10 {
@@ -450,6 +642,10 @@ body {
   min-height: 10rem;
 }
 
+.spacing-10 {
+  letter-spacing: 10px;
+}
+
 .spacing-11 {
   letter-spacing: 11px;
 }
@@ -485,6 +681,10 @@ body {
 
 .mh-11 {
   min-height: 11rem;
+}
+
+.spacing-11 {
+  letter-spacing: 11px;
 }
 
 .spacing-12 {
@@ -524,6 +724,10 @@ body {
   min-height: 12rem;
 }
 
+.spacing-12 {
+  letter-spacing: 12px;
+}
+
 .spacing-13 {
   letter-spacing: 13px;
 }
@@ -559,6 +763,10 @@ body {
 
 .mh-13 {
   min-height: 13rem;
+}
+
+.spacing-13 {
+  letter-spacing: 13px;
 }
 
 .spacing-14 {
@@ -598,6 +806,10 @@ body {
   min-height: 14rem;
 }
 
+.spacing-14 {
+  letter-spacing: 14px;
+}
+
 .spacing-15 {
   letter-spacing: 15px;
 }
@@ -633,6 +845,10 @@ body {
 
 .mh-15 {
   min-height: 15rem;
+}
+
+.spacing-15 {
+  letter-spacing: 15px;
 }
 
 .spacing-16 {
@@ -672,6 +888,10 @@ body {
   min-height: 16rem;
 }
 
+.spacing-16 {
+  letter-spacing: 16px;
+}
+
 .spacing-17 {
   letter-spacing: 17px;
 }
@@ -707,6 +927,10 @@ body {
 
 .mh-17 {
   min-height: 17rem;
+}
+
+.spacing-17 {
+  letter-spacing: 17px;
 }
 
 .spacing-18 {
@@ -746,6 +970,10 @@ body {
   min-height: 18rem;
 }
 
+.spacing-18 {
+  letter-spacing: 18px;
+}
+
 .spacing-19 {
   letter-spacing: 19px;
 }
@@ -781,6 +1009,10 @@ body {
 
 .mh-19 {
   min-height: 19rem;
+}
+
+.spacing-19 {
+  letter-spacing: 19px;
 }
 
 .spacing-20 {
@@ -820,6 +1052,10 @@ body {
   min-height: 20rem;
 }
 
+.spacing-20 {
+  letter-spacing: 20px;
+}
+
 .spacing-21 {
   letter-spacing: 21px;
 }
@@ -855,6 +1091,10 @@ body {
 
 .mh-21 {
   min-height: 21rem;
+}
+
+.spacing-21 {
+  letter-spacing: 21px;
 }
 
 .spacing-22 {
@@ -894,6 +1134,10 @@ body {
   min-height: 22rem;
 }
 
+.spacing-22 {
+  letter-spacing: 22px;
+}
+
 .spacing-23 {
   letter-spacing: 23px;
 }
@@ -929,6 +1173,10 @@ body {
 
 .mh-23 {
   min-height: 23rem;
+}
+
+.spacing-23 {
+  letter-spacing: 23px;
 }
 
 .spacing-24 {
@@ -968,6 +1216,10 @@ body {
   min-height: 24rem;
 }
 
+.spacing-24 {
+  letter-spacing: 24px;
+}
+
 .spacing-25 {
   letter-spacing: 25px;
 }
@@ -1003,6 +1255,10 @@ body {
 
 .mh-25 {
   min-height: 25rem;
+}
+
+.spacing-25 {
+  letter-spacing: 25px;
 }
 
 .spacing-26 {
@@ -1042,6 +1298,10 @@ body {
   min-height: 26rem;
 }
 
+.spacing-26 {
+  letter-spacing: 26px;
+}
+
 .spacing-27 {
   letter-spacing: 27px;
 }
@@ -1077,6 +1337,10 @@ body {
 
 .mh-27 {
   min-height: 27rem;
+}
+
+.spacing-27 {
+  letter-spacing: 27px;
 }
 
 .spacing-28 {
@@ -1116,6 +1380,10 @@ body {
   min-height: 28rem;
 }
 
+.spacing-28 {
+  letter-spacing: 28px;
+}
+
 .spacing-29 {
   letter-spacing: 29px;
 }
@@ -1151,6 +1419,10 @@ body {
 
 .mh-29 {
   min-height: 29rem;
+}
+
+.spacing-29 {
+  letter-spacing: 29px;
 }
 
 .spacing-30 {
@@ -1190,6 +1462,10 @@ body {
   min-height: 30rem;
 }
 
+.spacing-30 {
+  letter-spacing: 30px;
+}
+
 .spacing-31 {
   letter-spacing: 31px;
 }
@@ -1225,6 +1501,10 @@ body {
 
 .mh-31 {
   min-height: 31rem;
+}
+
+.spacing-31 {
+  letter-spacing: 31px;
 }
 
 .spacing-32 {
@@ -1264,6 +1544,10 @@ body {
   min-height: 32rem;
 }
 
+.spacing-32 {
+  letter-spacing: 32px;
+}
+
 .spacing-33 {
   letter-spacing: 33px;
 }
@@ -1299,6 +1583,10 @@ body {
 
 .mh-33 {
   min-height: 33rem;
+}
+
+.spacing-33 {
+  letter-spacing: 33px;
 }
 
 .spacing-34 {
@@ -1338,6 +1626,10 @@ body {
   min-height: 34rem;
 }
 
+.spacing-34 {
+  letter-spacing: 34px;
+}
+
 .spacing-35 {
   letter-spacing: 35px;
 }
@@ -1373,6 +1665,10 @@ body {
 
 .mh-35 {
   min-height: 35rem;
+}
+
+.spacing-35 {
+  letter-spacing: 35px;
 }
 
 .spacing-36 {
@@ -1412,6 +1708,10 @@ body {
   min-height: 36rem;
 }
 
+.spacing-36 {
+  letter-spacing: 36px;
+}
+
 .spacing-37 {
   letter-spacing: 37px;
 }
@@ -1447,6 +1747,10 @@ body {
 
 .mh-37 {
   min-height: 37rem;
+}
+
+.spacing-37 {
+  letter-spacing: 37px;
 }
 
 .spacing-38 {
@@ -1486,6 +1790,10 @@ body {
   min-height: 38rem;
 }
 
+.spacing-38 {
+  letter-spacing: 38px;
+}
+
 .spacing-39 {
   letter-spacing: 39px;
 }
@@ -1521,6 +1829,10 @@ body {
 
 .mh-39 {
   min-height: 39rem;
+}
+
+.spacing-39 {
+  letter-spacing: 39px;
 }
 
 .spacing-40 {
@@ -1560,6 +1872,10 @@ body {
   min-height: 40rem;
 }
 
+.spacing-40 {
+  letter-spacing: 40px;
+}
+
 .spacing-41 {
   letter-spacing: 41px;
 }
@@ -1595,6 +1911,10 @@ body {
 
 .mh-41 {
   min-height: 41rem;
+}
+
+.spacing-41 {
+  letter-spacing: 41px;
 }
 
 .spacing-42 {
@@ -1634,6 +1954,10 @@ body {
   min-height: 42rem;
 }
 
+.spacing-42 {
+  letter-spacing: 42px;
+}
+
 .spacing-43 {
   letter-spacing: 43px;
 }
@@ -1669,6 +1993,10 @@ body {
 
 .mh-43 {
   min-height: 43rem;
+}
+
+.spacing-43 {
+  letter-spacing: 43px;
 }
 
 .spacing-44 {
@@ -1708,6 +2036,10 @@ body {
   min-height: 44rem;
 }
 
+.spacing-44 {
+  letter-spacing: 44px;
+}
+
 .spacing-45 {
   letter-spacing: 45px;
 }
@@ -1743,6 +2075,10 @@ body {
 
 .mh-45 {
   min-height: 45rem;
+}
+
+.spacing-45 {
+  letter-spacing: 45px;
 }
 
 .spacing-46 {
@@ -1782,6 +2118,10 @@ body {
   min-height: 46rem;
 }
 
+.spacing-46 {
+  letter-spacing: 46px;
+}
+
 .spacing-47 {
   letter-spacing: 47px;
 }
@@ -1817,6 +2157,10 @@ body {
 
 .mh-47 {
   min-height: 47rem;
+}
+
+.spacing-47 {
+  letter-spacing: 47px;
 }
 
 .spacing-48 {
@@ -1856,6 +2200,10 @@ body {
   min-height: 48rem;
 }
 
+.spacing-48 {
+  letter-spacing: 48px;
+}
+
 .spacing-49 {
   letter-spacing: 49px;
 }
@@ -1891,6 +2239,10 @@ body {
 
 .mh-49 {
   min-height: 49rem;
+}
+
+.spacing-49 {
+  letter-spacing: 49px;
 }
 
 .spacing-50 {
@@ -1930,6 +2282,10 @@ body {
   min-height: 50rem;
 }
 
+.spacing-50 {
+  letter-spacing: 50px;
+}
+
 .spacing-51 {
   letter-spacing: 51px;
 }
@@ -1965,6 +2321,10 @@ body {
 
 .mh-51 {
   min-height: 51rem;
+}
+
+.spacing-51 {
+  letter-spacing: 51px;
 }
 
 .spacing-52 {
@@ -2004,6 +2364,10 @@ body {
   min-height: 52rem;
 }
 
+.spacing-52 {
+  letter-spacing: 52px;
+}
+
 .spacing-53 {
   letter-spacing: 53px;
 }
@@ -2039,6 +2403,10 @@ body {
 
 .mh-53 {
   min-height: 53rem;
+}
+
+.spacing-53 {
+  letter-spacing: 53px;
 }
 
 .spacing-54 {
@@ -2078,6 +2446,10 @@ body {
   min-height: 54rem;
 }
 
+.spacing-54 {
+  letter-spacing: 54px;
+}
+
 .spacing-55 {
   letter-spacing: 55px;
 }
@@ -2113,6 +2485,10 @@ body {
 
 .mh-55 {
   min-height: 55rem;
+}
+
+.spacing-55 {
+  letter-spacing: 55px;
 }
 
 .spacing-56 {
@@ -2152,6 +2528,10 @@ body {
   min-height: 56rem;
 }
 
+.spacing-56 {
+  letter-spacing: 56px;
+}
+
 .spacing-57 {
   letter-spacing: 57px;
 }
@@ -2187,6 +2567,10 @@ body {
 
 .mh-57 {
   min-height: 57rem;
+}
+
+.spacing-57 {
+  letter-spacing: 57px;
 }
 
 .spacing-58 {
@@ -2226,6 +2610,10 @@ body {
   min-height: 58rem;
 }
 
+.spacing-58 {
+  letter-spacing: 58px;
+}
+
 .spacing-59 {
   letter-spacing: 59px;
 }
@@ -2261,6 +2649,10 @@ body {
 
 .mh-59 {
   min-height: 59rem;
+}
+
+.spacing-59 {
+  letter-spacing: 59px;
 }
 
 .spacing-60 {
@@ -2300,6 +2692,10 @@ body {
   min-height: 60rem;
 }
 
+.spacing-60 {
+  letter-spacing: 60px;
+}
+
 .spacing-61 {
   letter-spacing: 61px;
 }
@@ -2335,6 +2731,10 @@ body {
 
 .mh-61 {
   min-height: 61rem;
+}
+
+.spacing-61 {
+  letter-spacing: 61px;
 }
 
 .spacing-62 {
@@ -2374,6 +2774,10 @@ body {
   min-height: 62rem;
 }
 
+.spacing-62 {
+  letter-spacing: 62px;
+}
+
 .spacing-63 {
   letter-spacing: 63px;
 }
@@ -2409,6 +2813,10 @@ body {
 
 .mh-63 {
   min-height: 63rem;
+}
+
+.spacing-63 {
+  letter-spacing: 63px;
 }
 
 .spacing-64 {
@@ -2448,6 +2856,10 @@ body {
   min-height: 64rem;
 }
 
+.spacing-64 {
+  letter-spacing: 64px;
+}
+
 .spacing-65 {
   letter-spacing: 65px;
 }
@@ -2483,6 +2895,10 @@ body {
 
 .mh-65 {
   min-height: 65rem;
+}
+
+.spacing-65 {
+  letter-spacing: 65px;
 }
 
 .spacing-66 {
@@ -2522,6 +2938,10 @@ body {
   min-height: 66rem;
 }
 
+.spacing-66 {
+  letter-spacing: 66px;
+}
+
 .spacing-67 {
   letter-spacing: 67px;
 }
@@ -2557,6 +2977,10 @@ body {
 
 .mh-67 {
   min-height: 67rem;
+}
+
+.spacing-67 {
+  letter-spacing: 67px;
 }
 
 .spacing-68 {
@@ -2596,6 +3020,10 @@ body {
   min-height: 68rem;
 }
 
+.spacing-68 {
+  letter-spacing: 68px;
+}
+
 .spacing-69 {
   letter-spacing: 69px;
 }
@@ -2631,6 +3059,10 @@ body {
 
 .mh-69 {
   min-height: 69rem;
+}
+
+.spacing-69 {
+  letter-spacing: 69px;
 }
 
 .spacing-70 {
@@ -2670,6 +3102,10 @@ body {
   min-height: 70rem;
 }
 
+.spacing-70 {
+  letter-spacing: 70px;
+}
+
 .spacing-71 {
   letter-spacing: 71px;
 }
@@ -2705,6 +3141,10 @@ body {
 
 .mh-71 {
   min-height: 71rem;
+}
+
+.spacing-71 {
+  letter-spacing: 71px;
 }
 
 .spacing-72 {
@@ -2744,6 +3184,10 @@ body {
   min-height: 72rem;
 }
 
+.spacing-72 {
+  letter-spacing: 72px;
+}
+
 .spacing-73 {
   letter-spacing: 73px;
 }
@@ -2779,6 +3223,10 @@ body {
 
 .mh-73 {
   min-height: 73rem;
+}
+
+.spacing-73 {
+  letter-spacing: 73px;
 }
 
 .spacing-74 {
@@ -2818,6 +3266,10 @@ body {
   min-height: 74rem;
 }
 
+.spacing-74 {
+  letter-spacing: 74px;
+}
+
 .spacing-75 {
   letter-spacing: 75px;
 }
@@ -2853,6 +3305,10 @@ body {
 
 .mh-75 {
   min-height: 75rem;
+}
+
+.spacing-75 {
+  letter-spacing: 75px;
 }
 
 .spacing-76 {
@@ -2892,6 +3348,10 @@ body {
   min-height: 76rem;
 }
 
+.spacing-76 {
+  letter-spacing: 76px;
+}
+
 .spacing-77 {
   letter-spacing: 77px;
 }
@@ -2927,6 +3387,10 @@ body {
 
 .mh-77 {
   min-height: 77rem;
+}
+
+.spacing-77 {
+  letter-spacing: 77px;
 }
 
 .spacing-78 {
@@ -2966,6 +3430,10 @@ body {
   min-height: 78rem;
 }
 
+.spacing-78 {
+  letter-spacing: 78px;
+}
+
 .spacing-79 {
   letter-spacing: 79px;
 }
@@ -3001,6 +3469,10 @@ body {
 
 .mh-79 {
   min-height: 79rem;
+}
+
+.spacing-79 {
+  letter-spacing: 79px;
 }
 
 .spacing-80 {
@@ -3040,6 +3512,10 @@ body {
   min-height: 80rem;
 }
 
+.spacing-80 {
+  letter-spacing: 80px;
+}
+
 .spacing-81 {
   letter-spacing: 81px;
 }
@@ -3075,6 +3551,10 @@ body {
 
 .mh-81 {
   min-height: 81rem;
+}
+
+.spacing-81 {
+  letter-spacing: 81px;
 }
 
 .spacing-82 {
@@ -3114,6 +3594,10 @@ body {
   min-height: 82rem;
 }
 
+.spacing-82 {
+  letter-spacing: 82px;
+}
+
 .spacing-83 {
   letter-spacing: 83px;
 }
@@ -3149,6 +3633,10 @@ body {
 
 .mh-83 {
   min-height: 83rem;
+}
+
+.spacing-83 {
+  letter-spacing: 83px;
 }
 
 .spacing-84 {
@@ -3188,6 +3676,10 @@ body {
   min-height: 84rem;
 }
 
+.spacing-84 {
+  letter-spacing: 84px;
+}
+
 .spacing-85 {
   letter-spacing: 85px;
 }
@@ -3223,6 +3715,10 @@ body {
 
 .mh-85 {
   min-height: 85rem;
+}
+
+.spacing-85 {
+  letter-spacing: 85px;
 }
 
 .spacing-86 {
@@ -3262,6 +3758,10 @@ body {
   min-height: 86rem;
 }
 
+.spacing-86 {
+  letter-spacing: 86px;
+}
+
 .spacing-87 {
   letter-spacing: 87px;
 }
@@ -3297,6 +3797,10 @@ body {
 
 .mh-87 {
   min-height: 87rem;
+}
+
+.spacing-87 {
+  letter-spacing: 87px;
 }
 
 .spacing-88 {
@@ -3336,6 +3840,10 @@ body {
   min-height: 88rem;
 }
 
+.spacing-88 {
+  letter-spacing: 88px;
+}
+
 .spacing-89 {
   letter-spacing: 89px;
 }
@@ -3371,6 +3879,10 @@ body {
 
 .mh-89 {
   min-height: 89rem;
+}
+
+.spacing-89 {
+  letter-spacing: 89px;
 }
 
 .spacing-90 {
@@ -3410,6 +3922,10 @@ body {
   min-height: 90rem;
 }
 
+.spacing-90 {
+  letter-spacing: 90px;
+}
+
 .spacing-91 {
   letter-spacing: 91px;
 }
@@ -3445,6 +3961,10 @@ body {
 
 .mh-91 {
   min-height: 91rem;
+}
+
+.spacing-91 {
+  letter-spacing: 91px;
 }
 
 .spacing-92 {
@@ -3484,6 +4004,10 @@ body {
   min-height: 92rem;
 }
 
+.spacing-92 {
+  letter-spacing: 92px;
+}
+
 .spacing-93 {
   letter-spacing: 93px;
 }
@@ -3519,6 +4043,10 @@ body {
 
 .mh-93 {
   min-height: 93rem;
+}
+
+.spacing-93 {
+  letter-spacing: 93px;
 }
 
 .spacing-94 {
@@ -3558,6 +4086,10 @@ body {
   min-height: 94rem;
 }
 
+.spacing-94 {
+  letter-spacing: 94px;
+}
+
 .spacing-95 {
   letter-spacing: 95px;
 }
@@ -3593,6 +4125,10 @@ body {
 
 .mh-95 {
   min-height: 95rem;
+}
+
+.spacing-95 {
+  letter-spacing: 95px;
 }
 
 .spacing-96 {
@@ -3632,6 +4168,10 @@ body {
   min-height: 96rem;
 }
 
+.spacing-96 {
+  letter-spacing: 96px;
+}
+
 .spacing-97 {
   letter-spacing: 97px;
 }
@@ -3667,6 +4207,10 @@ body {
 
 .mh-97 {
   min-height: 97rem;
+}
+
+.spacing-97 {
+  letter-spacing: 97px;
 }
 
 .spacing-98 {
@@ -3706,6 +4250,10 @@ body {
   min-height: 98rem;
 }
 
+.spacing-98 {
+  letter-spacing: 98px;
+}
+
 .spacing-99 {
   letter-spacing: 99px;
 }
@@ -3743,6 +4291,10 @@ body {
   min-height: 99rem;
 }
 
+.spacing-99 {
+  letter-spacing: 99px;
+}
+
 .spacing-100 {
   letter-spacing: 100px;
 }
@@ -3778,6 +4330,10 @@ body {
 
 .mh-100 {
   min-height: 100rem;
+}
+
+.spacing-100 {
+  letter-spacing: 100px;
 }
 
 .flex-1 {
@@ -3835,7 +4391,7 @@ body {
 .body-grid {
   height: 100vh;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;
 }
 
 .content {
