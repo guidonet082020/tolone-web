@@ -88,9 +88,11 @@ $.minicolors.defaults = $.extend($.minicolors.defaults, {
     theme: 'bootstrap'
 });
 let c1 = $('#c1'),
+    c3 = $('#c3'),
     c2 = $('#c2');
 c1.minicolors();
 c2.minicolors();
+c3.minicolors();
 c1.on('change', function() {
     let hex = $(this).val()
     $(`path[data-type="base"]`).css('fill', hex);
@@ -100,6 +102,12 @@ c2.on('change', function() {
     $(`path[data-type="trama"]`).css('fill', hex);
     $(`g[data-type="trama"]`).css('fill', hex);
     $("g[fill-rule='evenodd'").css('fill', c2.val());
+});
+c3.on('change', function() {
+    let hex = $(this).val()
+    $(`path[data-type="trama-dos"]`).css('fill', hex);
+    $(`g[data-type="trama-dos"]`).css('fill', hex);
+    //$("g[fill-rule='evenodd'").css('fill', c3.val());
 });
 
 let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
