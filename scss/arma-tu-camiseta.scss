@@ -19,10 +19,11 @@
     &-configuration {
         grid-template: {
             columns: repeat(3, 1fr);
-            rows: 1fr 1fr repeat(3, 100px);
+            rows: repeat(4, 150px);
         }
         gap: 20px;
     }
+
 }
 
 #models {
@@ -31,23 +32,17 @@
     &_colors {
         grid-row: 3 / 4;
         grid-column: 1 / 4;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template:{
+            columns: repeat(2,1fr);
+            rows: auto;
+        } 
+        padding: 5px;
     }
     &_numbers {
         grid-column: 1 / 4;
         grid-row: 4 / 6;
     }
-    // Extra small devices (portrait phones, less than 576px)
-    // Small devices (landscape phones, 576px and up)
-    @media (min-width: 576px) {}
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {}
-    // Large devices (desktops, 992px and up)
-    @media (min-width: 992px) {}
-    // Extra large devices (large desktops, 1200px and up)
-    @media (min-width: 1200px) {}
 }
 
 #front-shirt {
@@ -101,4 +96,28 @@
     align-items: center;
     width: 80%;
     margin: 0 auto;
+}
+
+.puntos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .punto{
+        background-color: red;
+        display: inline-block;
+        width: 20px !important;
+        height: 20px !important;
+        margin: 0 5px;
+        border-radius: 50%;
+    }
+}
+
+#remerasContainer{
+    display: grid !important;
+    grid-template:{
+        columns: 100%;
+        rows: auto 1fr;
+    };
+    gap: 10px;
+    margin: auto 0;
 }

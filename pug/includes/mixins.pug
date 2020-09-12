@@ -24,14 +24,43 @@ mixin camisetaDorsoPrimaria
 
 mixin modelosRemeras(objRemeras)
     #modelosRemeras
-        .d-flex#remerasContainer.flex-wrap.justify-content-around.align-items-center
+
+        #remerasContainer
+            .mySlider.fade-custom.d-flex.flex-wrap.flex-row.justify-content-center(data-myslider="1")
+                - let arr = objRemeras.slice(0,17);
+                    +getRemeras(arr)
+            .mySlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-myslider="2")
+                - let arr2 = objRemeras.slice(18,33);
+                    +getRemeras(arr2)
+            .mySlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-myslider="3")
+                - let arr3 = objRemeras.slice(34,49);
+                    +getRemeras(arr3)
+            .mySlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-myslider="4")
+                - let arr4 = objRemeras.slice(50);
+                    +getRemeras(arr4)  
+            .direcciones.w-100.d-flex.justify-content-around.align-items-end
+                a.atras(onclick="avanzarSlide(-1)") &#10094;
+                
+                .puntos
+                    span.punto.active(onclick="posicionSlide(1)")
+                    span.punto(onclick="posicionSlide(2)")
+                    span.punto(onclick="posicionSlide(3)")
+                    span.punto(onclick="posicionSlide(4)")
+                
+                a.siguiente(onclick="avanzarSlide(1)") &#10095;
+            
+        //-.d-none#remerasContaine.flex-wrap.justify-content-around.align-items-center.controllers
             each remera in objRemeras
                 if(remera.name === "model01" || remera.name === "model04")    
                     .card.card-body.p-1.m-1.d-none(id=`${remera.name}`)
                         img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.mx-auto
-                else
-                    .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2(id=`${remera.name}`)
+                else 
+                    .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2.fade-custom(id=`${remera.name}`, data-slide=`${remera.name}`)
                         img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.m-auto
+
+            
+                
+                    
 
 mixin nombreNumerosRemeras(nombreNumero)
     #nombreNumerosRemeras
@@ -39,7 +68,6 @@ mixin nombreNumerosRemeras(nombreNumero)
             each e, i in nombreNumero
                 .card.card-body.p-1.m-1(style="width: 120px;")
                     p.m-0.p-1.text-center.text-uppercase.font-weight-bold.font-14(data-get=`${e.name}`) Modelo #{i+1}
-
 
 mixin formContact()
     //  Default form contact 
@@ -62,5 +90,48 @@ mixin formContact()
 mixin mapTolone()
     iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.864806508414!2d-58.405000684296844!3d-34.60757998045852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaec3423110f%3A0x66a9213179733dd5!2sTolone!5e0!3m2!1ses-419!2sar!4v1596422076119!5m2!1ses-419!2sar", width="100%", height="450", frameborder="0", style="border:0;", allowfullscreen, aria-hidden="false", tabindex="0").rounded-xl
 
+
+mixin getRemeras(remeras)
+    each remera in remeras
+        if(remera.name === "model01" || remera.name === "model04")    
+            .card.card-body.p-1.m-1.d-none(id=`${remera.name}`)
+                img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.mx-auto
+        
+        else
+            .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2.fade-custom(id=`${remera.name}`, data-slide=`${remera.name}`)
+                img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.m-auto
+
+mixin formSolicitarCreacion()
+    //  Default form contact 
+    form.text-center.border.border-none.p-5(action="#!")#formSolicitarCreacion
+        p.h4.mb-4 Peticion de camiseta
+        //  Name 
+        input#solicitarCreacionFormName.form-control.mb-4(type="text", placeholder="Nombre Completo")
+        //  Email 
+        input#solicitarCreacionFormEmail.form-control.mb-4(type="email", placeholder="E-mail")
+        //  Telephone 
+        input#solicitarCreacionFormTelephone.form-control.mb-4(type="number", placeholder="Telefono")
+        //  Message 
+        .form-group
+            textarea.form-control.rounded-0#example2FormControlTextarea2(rows="3", placeholder="Consulta")
+        //  Copy 
+        //  Send button 
+        button.btn.btn-green.btn-block(type="submit") Enviar
+        //  Default form contact 
+
 mixin solicitarCreacion()
-    button.btn.btn-success SOLICITAR
+    button.btn.btn-success.py-3.my-5(type="button", data-toggle="modal", data-target="#formCreation") SOLICITAR camiseta
+    
+    //  Modal 
+    .modal.fade#formCreation(tabindex="-1", role="dialog", aria-labelledby="formCreationLabel", aria-hidden="true")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    h5.modal-title#formCreationLabel Solicitar creacion de camiseta
+                    button.close(type="button", data-dismiss="modal", aria-label="Close")
+                    span(aria-hidden="true") ×
+                .modal-body
+                    +formSolicitarCreacion()
+                .modal-footer.mx-auto
+                    button.btn.btn-secondary(type="button", data-dismiss="modal") Cancelar
+                    button.btn.btn-primary(type="button") Enviar mail
