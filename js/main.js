@@ -352,3 +352,11 @@ gridProducts.click((e) => {
     $(`[class*='item-expanded-${selected}']`).toggleClass("d-none")
     console.log(selected)
 });
+
+$('#stepwizard').steps();
+
+// Add step
+wizard.steps("add", {
+    title: "HTML code", 
+    content: "<strong>HTML code</strong>"
+});

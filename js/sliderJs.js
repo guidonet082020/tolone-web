@@ -13,6 +13,20 @@ function posicionSlide(nSlide){
         }else{
             v.classList.add("d-none")
         }
+    })    
+}
+
+function posicionSlideModels(nSlide){
+    let slides = $("[data-slider-model]")
+    console.log(slides)
+    $.each(slides, (i,v) =>{ 
+        v.classList.remove('d-flex')
+        v.classList.remove('d-none')
+        //console.log(typeof parseInt(v.attributes[1].value) , typeof nSlide,parseInt(v.attributes[1].value) === nSlide)
+        if(parseInt(v.attributes[1].value) === nSlide){
+            v.classList.add("d-flex")
+        }else{
+            v.classList.add("d-none")
+        }
     })
-    
 }

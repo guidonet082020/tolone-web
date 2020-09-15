@@ -14,6 +14,8 @@ block append content
                         +camisetaFrentePrimaria
                     #back-shirt.d-flex.align-items-center.justify-content-center
                         +camisetaDorsoPrimaria
+                .text-center
+                    +solicitarCreacion()
             .col-12.col-xl-5
                 .remeras-configuration.d-grid
                     .card#models
@@ -31,7 +33,7 @@ block append content
                             p.font-12.text-uppercase.spacing-1.open-sans.my-1 Color Trama
                             input(type="text", name="color2", id="c2", value="#333333").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
                             //- button.btn.btn-success.btn-sm#apply-c2 aplicar
-                        .color-secondary.mx-2
+                        .color-thrind.mx-2
                             p.font-12.text-uppercase.spacing-1.open-sans.my-1 Color Trama dos
                             input(type="text", name="color3", id="c3", value="#444444").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
                             //- button.btn.btn-success.btn-sm#apply-c2 aplicar
@@ -39,10 +41,7 @@ block append content
                     .card#models_numbers
                         .card-header.text-center
                             p.font-12.text-uppercase.spacing-1.open-sans.m-0 nombre y numero
-                        .card-body.mx-auto
+                        .card-body
                             +nombreNumerosRemeras(nombreNumero)
                             //- button.btn.btn-success.btn-sm#apply-c2 aplicar
-                .col-12
-                    .text-center
-                        +solicitarCreacion()
                     

@@ -33,11 +33,24 @@
         grid-row: 3 / 4;
         grid-column: 1 / 4;
         display: grid;
-        grid-template:{
+        grid-template: {
             columns: repeat(2,1fr);
-            rows: auto;
+            rows: repeat(2, 1fr);
         } 
         padding: 5px;
+
+        .color-primary{
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+        .color-secondary{
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+        .color-thrind{
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;}
+
     }
     &_numbers {
         grid-column: 1 / 4;
@@ -103,18 +116,29 @@
     justify-content: center;
     align-items: center;
     .punto{
-        background-color: red;
+        background-color: rgb(17, 143, 0);
         display: inline-block;
         width: 20px !important;
         height: 20px !important;
         margin: 0 5px;
         border-radius: 50%;
+        filter: drop-shadow(0 0.1rem 0.2rem rgba($color: #000000, $alpha: 0.3));
     }
 }
 
 #remerasContainer{
     display: grid !important;
-    grid-template:{
+    grid-template: {
+        columns: 100%;
+        rows: auto 1fr;
+    };
+    gap: 10px;
+    margin: auto 0;
+}
+
+#nombreNumerosRemeras{
+    display: grid !important;
+    grid-template: {
         columns: 100%;
         rows: auto 1fr;
     };
