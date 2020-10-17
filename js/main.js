@@ -4,6 +4,15 @@ const iElement = document.createElement('i');
 const aElement = document.createElement('a');
 const divElement = document.createElement('div');
 
+const objToBackend = { 
+                        t_shirt: { 
+                                model:"" , 
+                                color_base:"" , 
+                                color_trama:"", 
+                                color_trama_two: "", 
+                                number: { model:"", color:"" }
+                            }
+                    };
 //! MOBILE THINGS
 
 let goToFront = $("#go-to-front");
@@ -51,22 +60,20 @@ let templateSuccess = `<div class="alert alert-success" role="alert"><h4 class="
 $('#contact-form').submit(function(e) {
     e.preventDefault();
     const postValue = {
-        name: $('#name').val(),
-        email: $('#emailInput').val(),
-        phone: $('#phone').val(),
-        message: $('#message').val(),
-        bugSelect: $('#bugSelect').val(),
-        placeSelect: $('#placeSelect').val()
+        name: $('#defaultContactFormName').val(),
+        email: $('#defaultContactFormEmail').val(),
+        phone: $('#defaultContactFormTelephone').val(),
+        message: $('#exampleFormControlTextarea2').val(),
     };
     //console.log(postValue)
     $.post('php/addMessage.php', postValue, function(res) {
         //console.log(res)
         if (res === '200') {
-            $('#response').html(templateSuccess)
-            $('#form-container').addClass('d-none')
+            //$('#response').html(templateSuccess)
+            //$('#form-container').addClass('d-none')
+            $("#contact-form").trigger('reset');
         }
-
-        $("#contact-form").trigger('reset');
+        window.location="http://www.tolone.com.ar/gracias.html";
     });
 });
 
@@ -89,26 +96,41 @@ $.minicolors.defaults = $.extend($.minicolors.defaults, {
 });
 let c1 = $('#c1'),
     c3 = $('#c3'),
-    c2 = $('#c2');
+    c2 = $('#c2'),
+    c4 = $('#c4');
 c1.minicolors();
 c2.minicolors();
 c3.minicolors();
+c4.minicolors();
 c1.on('change', function() {
     let hex = $(this).val()
     $(`path[data-type="base"]`).css('fill', hex);
+    objToBackend.t_shirt.color_base= hex;
+    //console.log(objToBackend)
 });
 c2.on('change', function() {
     let hex = $(this).val()
     $(`path[data-type="trama"]`).css('fill', hex);
     $(`g[data-type="trama"]`).css('fill', hex);
     $("g[fill-rule='evenodd'").css('fill', c2.val());
+    objToBackend.t_shirt.color_trama= hex;
 });
 c3.on('change', function() {
     let hex = $(this).val()
     $(`path[data-type="trama-dos"]`).css('fill', hex);
     $(`g[data-type="trama-dos"]`).css('fill', hex);
     //$("g[fill-rule='evenodd'").css('fill', c3.val());
+    objToBackend.t_shirt.color_trama_two= hex;
 });
+c4.on('change', function() {
+    let hex = $(this).val()
+    //$(`path[data-type="trama"]`).css('fill', hex);
+    //$(`g[data-type="number"]`)[0].css('fill', hex);
+    $("#number-selected").css('fill', hex);
+    objToBackend.t_shirt.number.color= hex;
+});
+
+
 
 let camisetaFrentePrimaria = $("#camisetaFrentePrimaria svg");
 let camisetaDorsoPrimaria = $("#camisetaDorsoPrimaria svg");
@@ -170,6 +192,7 @@ function getFile(nameFolder, ...nameFile) {
 
 function setModel(nameFolder, nameFile) {
     console.log(`nameFolder: ${nameFolder}`, nameFile)
+    objToBackend.t_shirt.model = nameFolder;
     if (elementoMontado.name !== nameFolder) {
         elementoMontado.name = nameFolder;
         //console.log(`IF (${elementoMontado.name !== nameFolder}): ${nameFolder}`, elementoMontado.name)
@@ -180,6 +203,7 @@ function setModel(nameFolder, nameFile) {
         elementoMontado.name = "";
         elementoMontado.active = false;
     }
+    console.log(objToBackend)
 }
 
 function searchFiles(nameFile, nameFolder) {
@@ -246,14 +270,16 @@ function categorizeElements(parentContainer) {
 
 function categorizeNumberBack(svg) {
     let element = svg.children()[0].childNodes[0].childNodes[0];
-    console.log(element)
     if (element.length > 1) {
         for (let e of element) {
-            e.setAttribute("data-type", "trama");
+            e.setAttribute("data-type", "number");
         }
     } else {
-        element.setAttribute("data-type", "trama");
+        element.setAttribute("data-type", "number");
     }
+    element.childNodes[0].setAttribute("fill-rule","evenodd-number")
+    element.childNodes[0].id = "number-selected"
+    console.log(element.childNodes[0])
     return element;
 }
 
@@ -333,14 +359,17 @@ function getNombreNumero(dataGet) {
         let categorized = categorizeNumberBack(numeroDorso);
         if (categorized.length > 1) {
             for (let c in categorized) {
-                c.setAttribute('fill', c2.val());
+                c.setAttribute('fill', c4.val());
             }
         } else {
-            categorized.setAttribute('fill', c2.val());
+            categorized.setAttribute('fill', c4.val());
         }
-        $("g[fill-rule='evenodd'").css('fill', c2.val());
-        $("g[fill='#060606'").css('fill', c2.val());
+        $("g[fill-rule='evenodd-number'").css('fill', c4.val());
+        $("g[fill='#060606'").css('fill', c4.val());
     });
+    objToBackend.t_shirt.number.model = dataGet;
+    objToBackend.t_shirt.number.color = c4.val();
+    //console.log(objToBackend)
 }
 
 const gridProducts = $("#grid-productos");
@@ -353,10 +382,96 @@ gridProducts.click((e) => {
     console.log(selected)
 });
 
-$('#stepwizard').steps();
+$("#solicitarCreacion").submit((e) =>{
+    e.preventDefault();
+    let inputName = $("#validationCustom01")
+    let inputPhone = $("#validationCustom04")
+    let inputEmail = $("#validationCustom03")
+    if(inputName.val().length < 4){
+        inputName.css("border", "1px solid red")
+    }else{
+        inputName.css("border", "1px solid green")
+    }
 
-// Add step
-wizard.steps("add", {
-    title: "HTML code", 
-    content: "<strong>HTML code</strong>"
-});
+    if(inputEmail.val().length < 16){
+        inputEmail.css("border", "1px solid red")
+    }else{
+        inputEmail.css("border", "1px solid green")
+    }
+
+    if(inputPhone.val().length < 7 ){
+        inputPhone.css("border", "1px solid red")
+    }else{
+        inputPhone.css("border", "1px solid green")
+    }
+    
+    
+    const postObj = {
+        name:inputName.val(), 
+        phone:inputPhone.val(), 
+        email:inputEmail.val(), 
+        post_obj: JSON.stringify(objToBackend.t_shirt), 
+        model: objToBackend.t_shirt.model,
+        color_base: objToBackend.t_shirt.color_base,
+        color_trama: objToBackend.t_shirt.color_trama,
+        color_trama_two: objToBackend.t_shirt.color_trama_two,
+        number: objToBackend.t_shirt.number.model,
+        number_color: objToBackend.t_shirt.number.color
+    }
+    console.log(postObj)
+
+    $.post('php/addCreation.php', postObj, function(res) {
+        //console.log(res)
+        if (res === '200') {
+            //$('#response').html(templateSuccess)
+            //$('#formCreation').addClass('d-none')
+            $("#solicitarCreacion").trigger('reset');
+        }
+        //console.log(res)
+        
+    });
+    
+    window.location="http://www.tolone.com.ar/gracias.html";
+    //console.log(inputName)
+})
+
+function hexToCMYK (hex) {
+    var computedC = 0;
+    var computedM = 0;
+    var computedY = 0;
+    var computedK = 0;
+   
+    hex = (hex.charAt(0)=="#") ? hex.substring(1,7) : hex;
+   
+    if (hex.length != 6) {
+     alert ('Invalid length of the input hex value!');   
+     return; 
+    }
+    if (/[0-9a-f]{6}/i.test(hex) != true) {
+     alert ('Invalid digits in the input hex value!');
+     return; 
+    }
+   
+    var r = parseInt(hex.substring(0,2),16); 
+    var g = parseInt(hex.substring(2,4),16); 
+    var b = parseInt(hex.substring(4,6),16); 
+   
+    // BLACK
+    if (r==0 && g==0 && b==0) {
+     computedK = 1;
+     return [0,0,0,1];
+    }
+   
+    computedC = 1 - (r/255);
+    computedM = 1 - (g/255);
+    computedY = 1 - (b/255);
+   
+    var minCMY = Math.min(computedC,Math.min(computedM,computedY));
+   
+    computedC = (computedC - minCMY) / (1 - minCMY) ;
+    computedM = (computedM - minCMY) / (1 - minCMY) ;
+    computedY = (computedY - minCMY) / (1 - minCMY) ;
+    computedK = minCMY;
+   
+    return [computedC,computedM,computedY,computedK];
+   }

@@ -5,18 +5,16 @@
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $message = $_POST['message'];
-        $bugSelect = $_POST['bugSelect'];
-        $placeSelect = $_POST['placeSelect'];
         
-        $query = "INSERT into consulta(name,bug,place,phone,email,message) VALUES ('$name','$bugSelect','$placeSelect','$phone','$email','$message')";
+        $query = "INSERT into consulta(name,phone,email,message) VALUES ('$name','$phone','$email','$message')";
         $result = mysqli_query($connection, $query);
         if(!$result){
             die('Error en la consulta '. mysqli_error($connection));
         }
 
-         $email_to = "";
-         $content = "Nombre: " . $name . "\nEmail: " . $email . "\nTelefono: " . $phone ."\nServicio Seleccionado: ". $bugSelect ."\nLugar donde se solicita: " . $placeSelect . "\nMensaje: " . $message;
-         mail($email_to,"", $content);
+         $email_to = "contacto@tolone.com.ar";
+         $content = "Nombre: " . $name . "\nEmail: " . $email . "\nTelefono: " . $phone ."\nMensaje: " . $message;
+         mail($email_to,"Nueva consulta de contacto", $content);
         
         echo 200;
     }

@@ -1,13 +1,13 @@
 mixin card-service(dataCards = productCards.principal)
     each card, i in dataCards
         if i%2 == 0  
-            .card.card-body.p-4.rounded-xl.d-grid.card-principal.grey.lighten-2(id=`data_card_${i}`)
-                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1= card.name
+            a.card.card-body.p-4.rounded-xl.d-grid.card-principal.grey.lighten-2(id=`data_card_${i}`,href=`${card.link}`)
+                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1.text-dark= card.name
                 img(src=`./img/assets/${card.img}`, alt="", height="120")
         else 
-            .card.card-body.my-3.p-4.rounded-xl.d-grid.card-principal.grey.lighten-1(id=`data_card_${i}`)
+            a.card.card-body.my-3.p-4.rounded-xl.d-grid.card-principal.grey.lighten-1(id=`data_card_${i}`,href=`${card.link}`)
                 img(src=`./img/assets/${card.img}`, alt="", height="120")
-                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1= card.name
+                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1.text-dark= card.name
 
 mixin camisetaFrentePrimaria
     #camisetaFrentePrimaria.position-relative
@@ -72,8 +72,8 @@ mixin nombreNumerosRemeras(nombreNumero)
 
 mixin formContact()
     //  Default form contact 
-    form.text-center.border.border-light.p-5(action="#!")
-        p.h4.mb-4 Contact us
+    form#contact-form.text-center.border.border-light.p-5
+        p.h4.mb-4 Contacto
         //  Name 
         input#defaultContactFormName.form-control.mb-4(type="text", placeholder="Nombre Completo")
         //  Email 
@@ -105,12 +105,31 @@ mixin getRemeras(remeras)
             .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2.fade-custom(id=`${remera.name}`, data-slide=`${remera.name}`)
                 img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.m-auto
 
+
+
+
 mixin formSolicitarCreacion() 
-    #stepwizard
-        h1 First Step
-        div First Content
-            h1 Second Step
-        div Second Content
+    form#solicitarCreacion
+        .form-row
+            .col-md-12.mb-3
+                label(for="validationCustom01") Nombre Completo
+                input.form-control.required#validationCustom01(type="text",name="name-creation", placeholder="Ingrese nombre completo", )                                    
+                
+        .form-row
+            .col-md-6.mb-3
+                label(for="validationCustom03") Email
+                input.form-control.required#validationCustom03(type="email",name="email-creation", placeholder="Email")
+                
+                
+            .col-md-6.mb-3
+                label(for="validationCustom04") Telefono
+                input.form-control.required#validationCustom04(type="text",name="phone-creation", placeholder="Telefono")
+                
+                
+        button.btn.btn-primary.btn-sm(id="send-form-creation") Solicitar
+
+
+
 
 mixin solicitarCreacion()
     button.btn.btn-success.py-3.my-5(type="button", data-toggle="modal", data-target="#formCreation") SOLICITAR camiseta
@@ -125,6 +144,3 @@ mixin solicitarCreacion()
                     span(aria-hidden="true") ×
                 .modal-body
                     +formSolicitarCreacion()
-                .modal-footer.mx-auto
-                    button.btn.btn-secondary(type="button", data-dismiss="modal") Cancelar
-                    button.btn.btn-primary(type="button") Enviar mail
