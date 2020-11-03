@@ -1,0 +1,25 @@
+extends ../templates/template.pug
+block append config
+    - titlePage = "Productos"
+    
+block append content
+    .container
+        .row
+            .col-12
+                +tablaRePiola()
+        .row.d-none#pedido-active
+            .col-12
+                button.btn.btn-warning#btn-back atras
+                .alert.alert-primary.d-none#server-status-response
+            .col-4
+                .d-flex.align-items-center.justify-content-center.position-relative
+                    +camisetaFrentePrimaria
+            .col-4
+                .d-flex.align-items-center.justify-content-center.position-relative
+                    +camisetaDorsoPrimaria
+            .col-4
+                .card.card-body#client-data
+                    p.font-weight-bold Cliente:
+                button.btn.btn-danger#btn-delete eliminar
+                button.btn.btn-success#btn-confirm confirmar
+                .alert.alert-primary.d-none#server-status

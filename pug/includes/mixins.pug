@@ -144,3 +144,21 @@ mixin solicitarCreacion()
                     span(aria-hidden="true") ×
                 .modal-body
                     +formSolicitarCreacion()
+
+mixin tablaRePiola()
+    .table-responsive.text-nowrap.py-3
+        table.table.grey.darken-3.text-white#tablaRePiola
+            thead
+                tr
+                    th(scope="col") ID
+                    th(scope="col") Nombre
+                    th(scope="col") Telefono
+                    th(scope="col") Email
+            tbody#t-content
+                tr.opcion#master-element
+                    th(scope="row") 
+                    td 
+                    td 
+                    td 
+                    td
+                        button.btn.btn-success.btn-sm.btn-block ver pedido
