@@ -5,7 +5,7 @@ block append config
 block append content
     .container
         .row.my-3
-            .col-12.my-auto
+            .col-12.col-xl-7.my-auto
                 .controls-mobile.d-md-none
                     button.btn.btn-green.active.rounded-lg#go-to-front frente 
                     button.btn.btn-green.rounded-lg#go-to-back dorso
@@ -14,27 +14,38 @@ block append content
                         +camisetaFrentePrimaria
                     #back-shirt.d-flex.align-items-center.justify-content-center
                         +camisetaDorsoPrimaria
-            .col-12
+                .text-center
+                    +solicitarCreacion()
+            .col-12.col-xl-5
                 .remeras-configuration.d-grid
                     .card#models
                         .card-header.text-center
                                 p.font-12.text-uppercase.spacing-1.open-sans.m-0 Modelos 
-                        .card-body.m-auto
+                        .card-body-remeras.m-auto
                             +modelosRemeras(modelosRemeras)
                             //- button.btn.btn-warning.btn-sm#reset resetar 
                     .card.text-center#models_colors
                         .color-primary.mx-2
-                            p.font-12.text-uppercase.spacing-1.open-sans Color primario
+                            p.font-12.text-uppercase.spacing-1.open-sans.my-1 Color base
                             input(type="text", name="color1", id="c1", value="#eeeeee").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
                             //- button.btn.btn-success.btn-sm#apply-c1 aplicar
                         .color-secondary.mx-2
-                            p.font-12.text-uppercase.spacing-1.open-sans.m-my-5 Color Secundario
+                            p.font-12.text-uppercase.spacing-1.open-sans.my-1 Color Trama
                             input(type="text", name="color2", id="c2", value="#333333").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
+                            //- button.btn.btn-success.btn-sm#apply-c2 aplicar
+                        .color-thrind.mx-2
+                            p.font-12.text-uppercase.spacing-1.open-sans.my-1 Color Trama dos
+                            input(type="text", name="color3", id="c3", value="#444444").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
+                            //- button.btn.btn-success.btn-sm#apply-c2 aplicar
+                        .color-four.mx-2
+                            p.font-12.text-uppercase.spacing-1.open-sans.my-1 Color Numero
+                            input(type="text", name="color4", id="c4", value="#FFFFFF").border-0.z-depth-1.rounded-lg.open-sans-700.py-1.text-center.spancing-2
                             //- button.btn.btn-success.btn-sm#apply-c2 aplicar
                             
                     .card#models_numbers
                         .card-header.text-center
                             p.font-12.text-uppercase.spacing-1.open-sans.m-0 nombre y numero
-                        .card-body.mx-auto
+                        .card-body
                             +nombreNumerosRemeras(nombreNumero)
                             //- button.btn.btn-success.btn-sm#apply-c2 aplicar
+                    

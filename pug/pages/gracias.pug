@@ -1,0 +1,23 @@
+extends ../templates/template.pug
+block append config
+    - titlePage = "Inicio"
+
+block append content
+    .container
+        <div id="complete" class="alert alert-success p-5 w-50 mx-auto animated fadeIn my-3" role="alert">
+            <h4 class="alert-heading font-weight-bold ">¡Excelente!</h4>
+            <p>Gracias por completar el formulario, en breve nos pondremos en contacto.</p>
+            <hr>
+            <p class="mb-0">Para cualquier consulta comuníquese con nosotros mediante nuestras <span class="font-weight-bold">consultas@tolone.com.ar</span></p>
+        </div>
+        .row.my-3
+            .col-sm-12.col-md-8
+                .montserrat.text-uppercase.text-center
+                    h2.my-3 compra directa de fabrica - sin intermediarios
+                    .text-center
+                        img(src="./img/assets/disena-tu-camiseta.png", alt="Diseña tu camiseta").img-fluid
+                        img(src="./img/assets/home-camisetas.png", alt="Camisetas Deportivas").img-fluid
+                        a.btn.btn-success(href="arma-tu-camiseta.html") ARMA TU CAMISETA
+                        img(src="./img/assets/indumentria-deportiva.png", alt="Indumentaria Deportiva").img-fluid
+            .col-sm-12.col-md-4.my-auto
+                +card-service

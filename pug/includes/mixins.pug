@@ -1,13 +1,13 @@
 mixin card-service(dataCards = productCards.principal)
     each card, i in dataCards
         if i%2 == 0  
-            .card.card-body.p-4.rounded-xl.d-grid.card-principal.grey.lighten-2(id=`data_card_${i}`)
-                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1= card.name
+            a.card.card-body.p-4.rounded-xl.d-grid.card-principal.grey.lighten-2(id=`data_card_${i}`,href=`${card.link}`)
+                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1.text-dark= card.name
                 img(src=`./img/assets/${card.img}`, alt="", height="120")
         else 
-            .card.card-body.my-3.p-4.rounded-xl.d-grid.card-principal.grey.lighten-1(id=`data_card_${i}`)
+            a.card.card-body.my-3.p-4.rounded-xl.d-grid.card-principal.grey.lighten-1(id=`data_card_${i}`,href=`${card.link}`)
                 img(src=`./img/assets/${card.img}`, alt="", height="120")
-                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1= card.name
+                h4.montserrat.text-uppercase.text-center.font-weight-bold.spacing-1.text-dark= card.name
 
 mixin camisetaFrentePrimaria
     #camisetaFrentePrimaria.position-relative
@@ -24,27 +24,56 @@ mixin camisetaDorsoPrimaria
 
 mixin modelosRemeras(objRemeras)
     #modelosRemeras
-        .d-flex#remerasContainer.flex-wrap.justify-content-around.align-items-center
-            each remera in objRemeras
-                if(remera.name === "model01" || remera.name === "model04")    
-                    .card.card-body.p-1.m-1.d-none(id=`${remera.name}`)
-                        img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.mx-auto
-                else
-                    .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2(id=`${remera.name}`)
-                        img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.m-auto
-
+        #remerasContainer
+            .mySlider.fade-custom.d-flex.flex-wrap.flex-row.justify-content-center(data-myslider="1")
+                - let arr = objRemeras.slice(0,17);
+                    +getRemeras(arr)
+            .mySlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-myslider="2")
+                - let arr2 = objRemeras.slice(18,33);
+                    +getRemeras(arr2)
+            .mySlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-myslider="3")
+                - let arr3 = objRemeras.slice(34,49);
+                    +getRemeras(arr3)
+            .mySlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-myslider="4")
+                - let arr4 = objRemeras.slice(50);
+                    +getRemeras(arr4)  
+            .direcciones.w-100.d-flex.justify-content-around.align-items-end                
+                .puntos
+                    span.punto.active(onclick="posicionSlide(1)")
+                    span.punto(onclick="posicionSlide(2)")
+                    span.punto(onclick="posicionSlide(3)")
+                    span.punto(onclick="posicionSlide(4)")  
+                    
 mixin nombreNumerosRemeras(nombreNumero)
     #nombreNumerosRemeras
-        .d-flex#nombreNumerosRemerasContainer.flex-wrap
-            each e, i in nombreNumero
-                .card.card-body.p-1.m-1
-                    p.m-0.p-1.text-center(data-get=`${e.name}`) #{i}
-
+        #nombreNumerosRemerasContainer
+            .myOtherSlider.fade-custom.d-flex.flex-wrap.flex-row.justify-content-center(data-slider-model="1")
+                - let arrN1 = nombreNumero.slice(0,3);
+                    +getNombreNumeros(arrN1)
+            .myOtherSlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-slider-model="2")
+                - let arrN2 = nombreNumero.slice(3,6);
+                    +getNombreNumeros(arrN2)
+            .myOtherSlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-slider-model="3")
+                - let arrN3 = nombreNumero.slice(6,9);
+                    +getNombreNumeros(arrN3)
+            .myOtherSlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-slider-model="4")
+                - let arrN4 = nombreNumero.slice(9,12);
+                    +getNombreNumeros(arrN4)
+            .myOtherSlider.fade-custom.d-none.flex-wrap.flex-row.justify-content-center(data-slider-model="5")
+                - let arrN5 = nombreNumero.slice(12,15);
+                    +getNombreNumeros(arrN5)
+        .direcciones.w-100.d-flex.justify-content-around.align-items-end                
+                .puntos
+                    span.punto.active(onclick="posicionSlideModels(1)")
+                    span.punto(onclick="posicionSlideModels(2)")
+                    span.punto(onclick="posicionSlideModels(3)")
+                    span.punto(onclick="posicionSlideModels(4)") 
+                    span.punto(onclick="posicionSlideModels(5)") 
 
 mixin formContact()
     //  Default form contact 
-    form.text-center.border.border-light.p-5(action="#!")
-        p.h4.mb-4 Contact us
+    form#contact-form.text-center.border.border-light.p-5
+        p.h4.mb-4 Contacto
         //  Name 
         input#defaultContactFormName.form-control.mb-4(type="text", placeholder="Nombre Completo")
         //  Email 
@@ -62,3 +91,74 @@ mixin formContact()
 mixin mapTolone()
     iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.864806508414!2d-58.405000684296844!3d-34.60757998045852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaec3423110f%3A0x66a9213179733dd5!2sTolone!5e0!3m2!1ses-419!2sar!4v1596422076119!5m2!1ses-419!2sar", width="100%", height="450", frameborder="0", style="border:0;", allowfullscreen, aria-hidden="false", tabindex="0").rounded-xl
 
+mixin getNombreNumeros(nombreNumeros)
+    each e, i in nombreNumeros
+        .card.card-body.p-1.m-1(style="width: 120px;")
+            p.m-0.p-1.text-center.text-uppercase.font-weight-bold.font-14(data-get=`${e.name}`) #{e.title} 
+
+mixin getRemeras(remeras)
+    each remera in remeras
+        if(remera.name === "model01" || remera.name === "model04")    
+            .card.card-body.p-1.m-1.d-none(id=`${remera.name}`)
+                img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.mx-auto
+        else
+            .card.p-0.m-1.square-element-4.rounded-xl.z-depht-2.fade-custom(id=`${remera.name}`, data-slide=`${remera.name}`)
+                img(src=`${remera.path}`, alt=`${remera.name}`, data-forms=`${remera.forms}`, width="50").d-block.m-auto
+
+
+
+
+mixin formSolicitarCreacion() 
+    form#solicitarCreacion
+        .form-row
+            .col-md-12.mb-3
+                label(for="validationCustom01") Nombre Completo
+                input.form-control.required#validationCustom01(type="text",name="name-creation", placeholder="Ingrese nombre completo", )                                    
+                
+        .form-row
+            .col-md-6.mb-3
+                label(for="validationCustom03") Email
+                input.form-control.required#validationCustom03(type="email",name="email-creation", placeholder="Email")
+                
+                
+            .col-md-6.mb-3
+                label(for="validationCustom04") Telefono
+                input.form-control.required#validationCustom04(type="text",name="phone-creation", placeholder="Telefono")
+                
+                
+        button.btn.btn-primary.btn-sm(id="send-form-creation") Solicitar
+
+
+
+
+mixin solicitarCreacion()
+    button.btn.btn-success.py-3.my-5(type="button", data-toggle="modal", data-target="#formCreation") SOLICITAR camiseta
+    
+    //  Modal 
+    .modal.fade#formCreation(tabindex="-1", role="dialog", aria-labelledby="formCreationLabel", aria-hidden="true")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    h5.modal-title#formCreationLabel Solicitar creacion de camiseta
+                    button.close(type="button", data-dismiss="modal", aria-label="Close")
+                    span(aria-hidden="true") ×
+                .modal-body
+                    +formSolicitarCreacion()
+
+mixin tablaRePiola()
+    .table-responsive.text-nowrap.py-3
+        table.table.grey.darken-3.text-white#tablaRePiola
+            thead
+                tr
+                    th(scope="col") ID
+                    th(scope="col") Nombre
+                    th(scope="col") Telefono
+                    th(scope="col") Email
+            tbody#t-content
+                tr.opcion#master-element
+                    th(scope="row") 
+                    td 
+                    td 
+                    td 
+                    td
+                        button.btn.btn-success.btn-sm.btn-block ver pedido
