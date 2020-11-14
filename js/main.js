@@ -7,10 +7,10 @@ const divElement = document.createElement('div');
 const objToBackend = { 
                         t_shirt: { 
                                 model:"" , 
-                                color_base:"" , 
-                                color_trama:"", 
-                                color_trama_two: "", 
-                                number: { model:"", color:"" }
+                                color_base:"#FFFFFF" , 
+                                color_trama:"#000000", 
+                                color_trama_two: "#333333", 
+                                number: { model:"", color:"#EEEEEE" }
                             }
                     };
 //! MOBILE THINGS
@@ -191,7 +191,7 @@ function getFile(nameFolder, ...nameFile) {
 }
 
 function setModel(nameFolder, nameFile) {
-    console.log(`nameFolder: ${nameFolder}`, nameFile)
+    //console.log(`nameFolder: ${nameFolder}`, nameFile)
     objToBackend.t_shirt.model = nameFolder;
     if (elementoMontado.name !== nameFolder) {
         elementoMontado.name = nameFolder;
@@ -203,23 +203,24 @@ function setModel(nameFolder, nameFile) {
         elementoMontado.name = "";
         elementoMontado.active = false;
     }
-    console.log(objToBackend)
+    //console.log(objToBackend)
 }
 
-function searchFiles(nameFile, nameFolder) {
+function searchFiles(nameFile, nameFolder,color_one = c1.val(), color_two = c2.val()) {
     $(`#tramaFrente`).empty();
     $(`#tramaDorso`).empty();
     elementoMontado.active = false;
     for (const [i, name] of nameFile.entries()) {
-        $.get(`../img/assets/remeras/${nameFolder}/${name}.svg`, (data) => {
+        $.get(`./img/assets/remeras/${nameFolder}/${name}.svg`, (data) => {
             if (i === 0) {
                 let tramaFrente = parseAppend(data.children[0], "tramaFrente");
                 categorizeElements(tramaFrente)
-                changeColor("base", c1.val())
+                changeColor("base", color_one)
             } else {
                 let tramaDorso = parseAppend(data.children[0], "tramaDorso");
                 categorizeElements(tramaDorso)
-                changeColor("trama", c2.val())
+                console.log("color_two",color_two)
+                changeColor("trama", color_two)
                 elementoMontado.active = true;
             }
         });
@@ -352,28 +353,27 @@ btnReset.click(() => {
     changeColor('trama', c2.val());
 })
 
-function getNombreNumero(dataGet) {
+function getNombreNumero(dataGet , color_four= c4.val()) {
     $("#numeroDorso").empty();
-    $.get(`../img/svg/nombreNumero/${dataGet}.svg`, (data) => {
+    $.get(`img/svg/nombreNumero/${dataGet}.svg`, (data) => {
         let numeroDorso = parseAppend(data.children[0], "numeroDorso");
         let categorized = categorizeNumberBack(numeroDorso);
         if (categorized.length > 1) {
             for (let c in categorized) {
-                c.setAttribute('fill', c4.val());
+                c.setAttribute('fill', color_four);
             }
         } else {
-            categorized.setAttribute('fill', c4.val());
+            categorized.setAttribute('fill', color_four);
         }
-        $("g[fill-rule='evenodd-number'").css('fill', c4.val());
-        $("g[fill='#060606'").css('fill', c4.val());
+        $("g[fill-rule='evenodd-number'").css('fill', color_four);
+        $("g[fill='#060606'").css('fill', color_four);
     });
     objToBackend.t_shirt.number.model = dataGet;
-    objToBackend.t_shirt.number.color = c4.val();
+    objToBackend.t_shirt.number.color = color_four;
     //console.log(objToBackend)
 }
 
 const gridProducts = $("#grid-productos");
-
 gridProducts.click((e) => {
     let { target } = e;
     let selected = target.getAttribute("alt");
@@ -418,7 +418,7 @@ $("#solicitarCreacion").submit((e) =>{
         number: objToBackend.t_shirt.number.model,
         number_color: objToBackend.t_shirt.number.color
     }
-    console.log(postObj)
+    //console.log(postObj)
 
     $.post('php/addCreation.php', postObj, function(res) {
         //console.log(res)
@@ -426,6 +426,7 @@ $("#solicitarCreacion").submit((e) =>{
             //$('#response').html(templateSuccess)
             //$('#formCreation').addClass('d-none')
             $("#solicitarCreacion").trigger('reset');
+
         }
         //console.log(res)
         
@@ -475,3 +476,169 @@ function hexToCMYK (hex) {
    
     return [computedC,computedM,computedY,computedK];
    }
+
+function generateRow(data){
+       $('#master-element').addClass('d-none');
+       let { id, email, phone, name, object } = data;
+       //console.log(object)
+       
+       let el = $('tr.opcion:first').clone();
+       el.removeClass('d-none');
+       el[0].id = `customer-${id}`;
+       el[0].childNodes[0].innerText = id;
+       el[0].childNodes[1].innerText = name;
+       el[0].childNodes[2].innerText = phone;
+       el[0].childNodes[3].innerText = email;
+       el[0].childNodes[4].setAttribute("data-obj", JSON.stringify(object));
+       el.appendTo('#t-content');
+   }
+   
+let tableProducts = document.getElementById('tablaRePiola');
+let btnBack = document.getElementById('btn-back');
+let btnDelete = document.getElementById('btn-delete');
+let btnConfirm = document.getElementById('btn-confirm');
+
+btnBack ? showTable() : null;
+function showTable(){
+    btnBack.addEventListener('click',function(){
+        $('#tablaRePiola').toggleClass('d-none');
+        $('#pedido-active').toggleClass('d-none'); 
+        let dataClient = $('#client-data').children();
+        for(let dc of dataClient){
+            if(dc.getAttribute('class') === null){
+                dc.remove();
+            }
+        }
+    });
+    btnDelete.addEventListener('click', function (){
+        let tmp_date = new Date();
+        let serverStatusRes = $('#server-status-response');
+        const postValue = {
+            id: btnDelete.getAttribute('data-id'),
+            date: `${tmp_date.getFullYear()}-${tmp_date.getMonth()}-${tmp_date.getDay()}`,
+            message: 'CANCELADO'
+        }
+        
+        $.post("php/pedido.php", postValue, function( data ) {
+            console.log()
+            serverStatusRes.removeClass("alert-primary alert-success d-none").addClass("alert-danger").text(data);
+        });
+    
+    })
+
+    btnConfirm.addEventListener('click', function (){
+        let tmp_date = new Date();
+        let serverStatusRes = $('#server-status-response');
+        const postValue = {
+            id: btnDelete.getAttribute('data-id'),
+            date: `${tmp_date.getFullYear()}-${tmp_date.getMonth()}-${tmp_date.getDay()}`,
+            message: 'CONFIRMADO'
+        }
+        
+        $.post("php/pedido.php", postValue, function( data ) {
+            serverStatusRes.removeClass("alert-primary alert-danger d-none").addClass("alert-success").text(data);
+        });
+    });
+
+}
+
+tableProducts ? getTable() : null;
+function getTable(){
+    $.get('php/lista-pedidos.php', function(res) {
+        // console.log(, window.location.hash, window.location.pathname);
+         let json = JSON.parse(res);
+         //console.log($('#tablaRePiola')[0])
+         for(let j of json.items){
+             generateRow(j);
+         }
+     });
+
+    tableProducts.addEventListener('click', function (e){
+        if(e.target.nodeName === 'BUTTON'){
+            let productObj = JSON.parse(e.target.parentNode.getAttribute('data-obj'));
+            let { model, color_base, color_trama, color_trama_two, number } = productObj;
+            $('#camisetaFrentePrimaria')[0].firstChild.setAttribute('fill', color_base);
+            $('#camisetaDorsoPrimaria')[0].firstChild.setAttribute('fill', color_base);
+            let numberOfTshirt;
+            if(model.startsWith("model0")){
+                numberOfTshirt = model.slice(6);
+            }else{
+                numberOfTshirt = model.slice(5);
+            }
+            searchFiles([`modelo-${numberOfTshirt}-01`,`modelo-${numberOfTshirt}-02`], model, color_base, color_trama);
+            getNombreNumeroFromBase(number.model, number.color); 
+            showCustomerData(e)
+            $('#tablaRePiola').toggleClass('d-none');
+            $('#pedido-active').toggleClass('d-none');     
+        }
+    });
+}
+
+function getNombreNumeroFromBase(dataGet , color_four= c4.val()) {
+    $("#numeroDorso").empty();
+    $.get(`./img/svg/nombreNumero/${dataGet}.svg`, (data) => {
+        let numeroDorso = $('#numeroDorso').append(data.childNodes[0])
+        let categorized = categorizeNumberBack(numeroDorso);
+        if (categorized.length > 1) {
+            for (let c in categorized) {
+                c.setAttribute('fill', color_four);
+            }
+        } else {
+            categorized.setAttribute('fill', color_four);
+        }
+        $("g[fill-rule='evenodd-number'").css('fill', color_four);
+        $("g[fill='#060606'").css('fill', color_four);
+    });
+
+}
+
+function showCustomerData(e){
+    let elemRow = e.target.parentElement.parentElement.childNodes;
+    let p = $("<p></p>");
+    let dataClient = $('#client-data');
+    for(const [i, elR] of elemRow.entries()){
+        switch(i){
+            case 0:
+                let id = elR.firstChild.nodeValue;
+                let dataToBack = { id : id }
+                btnDelete.setAttribute('data-id', id);
+                btnConfirm.setAttribute('data-id', id);
+                verifyOrder(dataToBack);
+                break;
+            case 1:
+                let name_p = p.clone();
+                name_p.text(elR.innerText);
+                dataClient.append(name_p);
+                break;
+            case 2:
+                let email_p = p.clone();
+                email_p.text(elR.innerText);
+                dataClient.append(email_p);
+                break;
+            case 3:
+                let phone_p = p.clone();
+                phone_p.text(elR.innerText);
+                dataClient.append(phone_p);
+                break;
+        }
+    }
+}
+
+function verifyOrder(id){
+    $.get('php/pedido.php', id, function(res){
+        let data = JSON.parse(res); // Registro completo de la base
+        let { pedido_confirmado } = data[0];
+        let serverStatus =  $('#server-status')
+        if(pedido_confirmado === "false"){
+            //console.log(pedido_confirmado, btnConfirm, btnDelete)
+                btnConfirm.style.display = 'none';
+                btnDelete.style.display = 'none';
+                serverStatus.removeClass('d-none alert-primary alert-success').addClass('alert-danger my-2').text("El pedido fue cancelado.");
+        }else if(pedido_confirmado === "CONFIRMADO"){
+            //console.log(pedido_confirmado, btnConfirm, btnDelete)
+                btnConfirm.style.display = 'none';
+                btnDelete.style.display = 'none';
+                serverStatus.removeClass('d-none alert-primary alert-danger').addClass('alert-success my-2').text("El pedido fue confirmado.");
+        }
+    });
+}
